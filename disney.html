@@ -38,13 +38,14 @@ header {
 
 header a {
   color: white;
-  font-weight: 600;
+  font-weight: 300;
   text-decoration: none;
   border: 1.5px solid white;
   padding: 8px 16px;
   border-radius: 6px;
   backdrop-filter: blur(4px);
   transition: .3s;
+  letter-spacing: 1px;
 }
 
 header a:hover {
@@ -86,12 +87,15 @@ header a:hover {
 
 h2 {
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 300;
+  letter-spacing: .5px;
 }
 
 p {
   font-size: 16px;
   opacity: 0.85;
+  font-weight: 300;
+  line-height: 1.5;
 }
 
 .form input {
@@ -100,17 +104,16 @@ p {
   border-radius: 6px;
   border: 1px solid #333;
   margin-top: 12px;
-  font-size: 20px;
+  font-size: 16px;
   background: #1E1E1E;
   color: #fff;
   font-weight: 300;  /* LETRA DELGADA */
 }
 
-
-
- .btn {
+/* Botón Suscribirme */
+.btn {
   width: 100%;
-  background: rgb(2, 214, 232);
+  background: #00C8FF;
   color: #000;
   border: none;
   padding: 15px;
@@ -118,62 +121,81 @@ p {
   border-radius: 6px;
   margin-top: 12px;
   cursor: pointer;
-  font-weight: 300;   /* LETRA DELGADA */
+  font-weight: 300;
   letter-spacing: 2px;
 }
 
-/* ================================================= */
-/*         SECCIÓN PLANES – 100% MOBILE              */
-/* ================================================= */
+/* ============================================================
+   SECCIÓN PLANES – IGUAL A DISNEY+ (FULL ORIGINAL)
+============================================================ */
 
 .populares-container {
-  background: #0A0A0A;
-  color: white;
-  padding: 40px 20px;
-  overflow-x: hidden !important;
+  background: #000;
+  padding: 35px 15px;
 }
 
 .populares-planes {
   display: flex;
-  gap: 15px;
+  gap: 12px;
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
   padding-bottom: 15px;
-  width: 100%;
+  scroll-snap-type: x mandatory;
 }
 
+.populares-planes::-webkit-scrollbar {
+  height: 4px;
+}
+.populares-planes::-webkit-scrollbar-thumb {
+  background: #222;
+  border-radius: 50px;
+}
+
+/* CARD PLAN */
 .plan-card {
-  min-width: 200px;
-  background: #111;
-  border-radius: 12px;
-  padding: 18px;
-  flex-shrink: 0;
+  min-width: 180px;
+  background: #111827;
+  padding: 18px 14px;
+  border-radius: 14px;
+  border: 1px solid #1f2937;
   text-align: center;
-  border: 1px solid #1f1f1f;
-  scroll-snap-align: start;
-  position: relative;
   cursor: pointer;
-  transition: .2s;
+  scroll-snap-align: start;
+  transition: .25s ease;
+  position: relative;
 }
 
 .plan-card.active {
   background: #00C8FF;
-  color: black;
-  font-weight: bold;
-  transform: scale(1.05);
+  color: #000;
+  transform: translateY(-3px);
 }
 
+.plan-title {
+  font-size: 17px;
+  letter-spacing: 2px;
+  font-weight: 300;
+}
+
+.plan-price {
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 300;
+  opacity: .85;
+  line-height: 1.5;
+}
+
+/* Badge “Más popular” */
 .badge-popular {
   position: absolute;
-  top: -12px;
+  top: -14px;
   left: 50%;
   transform: translateX(-50%);
-  background: #00C8FF;
-  padding: 4px 12px;
+  background: #E5E7EB;
+  color: #000;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 12px;
   border-radius: 20px;
-  font-size: 12px;
-  font-weight: 700;
-  color: black;
 }
 
 /* ---- DETALLE DEL PLAN ---- */
@@ -185,6 +207,7 @@ p {
   margin-top: 25px;
   display: none;
   animation: aparecer .3s ease;
+  font-weight: 300;
 }
 
 @keyframes aparecer {
@@ -195,15 +218,14 @@ p {
 .btn-comprar {
   width: 100%;
   background: #00C8FF;
-  color: #000;
+  color: black;
   border: none;
-  padding: 14px;
-  font-size: 18px;
+  padding: 13px;
   border-radius: 6px;
-  margin-top: 20px;
+  font-weight: 300;
+  margin-top: 15px;
   cursor: pointer;
-  font-weight: 700;
-  display: block;
+  letter-spacing: 1px;
 }
 
 /* ================================================= */
@@ -238,7 +260,7 @@ p {
   color: #fff;
   padding: 10px 28px;
   border-radius: 20px;
-  font-weight: 600;
+  font-weight: 300;
   cursor: pointer;
 }
 
@@ -279,9 +301,9 @@ footer p {
   <a href="#">INICIAR SESIÓN</a>
 </header>
 
+<!-- HERO -->
 <div class="hero" id="hero">
   <div class="overlay"></div>
-
   <div class="content">
     <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg" class="logo">
 
@@ -296,15 +318,12 @@ footer p {
   </div>
 </div>
 
-<!-- ================================================= -->
-<!--     SECCIÓN PLANES (DEBAJO DEL HERO)             -->
-<!-- ================================================= -->
-
+<!-- PLANES EXACTOS DEBAJO -->
 <div class="populares-container">
 
   <div class="populares-planes">
 
-    <div class="plan-card" data-plan="PREMIUM">
+    <div class="plan-card active" data-plan="PREMIUM">
       <div class="badge-popular">Más popular</div>
       <div class="plan-title">PREMIUM</div>
       <div class="plan-price">COP 49.900/mes<br>(final)*</div>
@@ -316,7 +335,7 @@ footer p {
     </div>
 
     <div class="plan-card" data-plan="ESTÁNDAR CON ANUNCIOS">
-      <div class="plan-title">ESTÁNDAR<br>CON ANUNCIOS</div>
+      <div class="plan-title">ESTÁNDAR CON ANUNCIOS</div>
       <div class="plan-price">COP 24.900/mes<br>(final)*</div>
     </div>
 
@@ -326,10 +345,7 @@ footer p {
 
 </div>
 
-<!-- ================================================= -->
-<!--           SECCIÓN ESPN + DISNEY+                 -->
-<!-- ================================================= -->
-
+<!-- SECCIÓN ESPN + DISNEY -->
 <div class="espn-section">
 
   <p>
@@ -353,21 +369,18 @@ footer p {
   </div>
 
   <img src="https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/64DBED3E97AEAF24E2236E3D20A8D0F3C7269306EE6E518110C9344D6560C3C7/compose?format=webp&width=660"
-       style="width:100%; border-radius:10px;">
+       style="width:100%; border-radius:10px; margin-top:10px;">
 
   <button class="plan-premium-btn">Plan Premium</button>
 
   <p style="margin-top:20px; opacity:.85; line-height:1.5;">
-    El deporte de ESPN y los eventos en vivo que te apasionan los<br>
-    encontrás en el plan Premium de Disney+.
+    El deporte de ESPN y los eventos en vivo que te apasionan<br>
+    los encontrás en el plan Premium de Disney+.
   </p>
 
 </div>
 
-<!-- ================================================= -->
-<!--                     FOOTER                        -->
-<!-- ================================================= -->
-
+<!-- FOOTER -->
 <footer>
   <div class="logos">
     <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg">
@@ -381,8 +394,8 @@ footer p {
   <p>© 2025 Plataforma+. Todos los derechos reservados.</p>
 </footer>
 
+<!-- SCRIPT -->
 <script>
-// ------------------- SLIDER AUTOMÁTICO -------------------
 const imagenes = [
   "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/306F5EDFDA4042AE78A10D7B3534E05CB3E2828EF9538023A13C968C7EE44309/compose?format=webp&width=660",
   "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/80990A540E73968454BF3FAFFE9F999388E337CDF36D20FB6AA56FE88CA15CB1/compose?format=webp&width=660",
@@ -402,7 +415,6 @@ function cambiarFondo() {
 cambiarFondo();
 setInterval(cambiarFondo, 4000);
 
-// ------------------- DETALLE PLANES -------------------
 const detallesPlanes = {
   "PREMIUM": `
     <h3>Detalles del plan PREMIUM</h3>
