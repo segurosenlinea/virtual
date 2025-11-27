@@ -9,12 +9,19 @@
 
 <style>
 /* ------------------- BASE ------------------- */
-body {
+html, body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden !important;
+  width: 100% !important;
   font-family: 'Inter', sans-serif;
   background: #000;
   color: #fff;
+}
+
+* {
+  box-sizing: border-box;
+  max-width: 100%;
 }
 
 /* ------------------- HEADER ------------------- */
@@ -52,6 +59,7 @@ header a:hover {
   background-position: center;
   transition: background-image 1s ease-in-out;
   position: relative;
+  overflow: hidden;
 }
 
 .overlay {
@@ -108,50 +116,24 @@ p {
   font-weight: 600;
 }
 
-/* ------------------- FOOTER ------------------- */
-footer {
-  background: #050505;
-  padding: 40px 20px;
-  text-align: center;
-  opacity: 0.8;
-}
-
-footer .logos img {
-  height: 30px;
-  margin: 10px;
-}
-
-footer p {
-  margin-top: 20px;
-  font-size: 13px;
-  opacity: 0.6;
-}
-
-/* ------------------- RESPONSIVE ------------------- */
-@media (min-width: 768px) {
-  .hero { height: 700px; }
-  h2 { font-size: 32px; }
-  .form input, .btn { max-width: 400px; margin-left: auto; margin-right: auto; }
-}
-
 /* ================================================= */
-/*      SECCIÓN POPULARES – ESTILO DISNEY+ MOBILE   */
+/*         SECCIÓN POPULARES – 100% MOBILE FIX       */
 /* ================================================= */
 
 .populares-container {
   background: #0A0A0A;
   color: white;
   padding: 40px 20px;
-  font-family: 'Inter', sans-serif;
+  overflow-x: hidden !important;
 }
 
-/* -------- PLANES -------- */
 .populares-planes {
   display: flex;
   gap: 15px;
   overflow-x: auto;
-  padding-bottom: 10px;
   scroll-snap-type: x mandatory;
+  padding-bottom: 15px;
+  width: 100%;
 }
 
 .populares-planes::-webkit-scrollbar {
@@ -164,12 +146,12 @@ footer p {
 }
 
 .plan-card {
-  min-width: 210px;
+  min-width: 200px;
   background: #111;
   border-radius: 12px;
   padding: 18px;
-  text-align: center;
   flex-shrink: 0;
+  text-align: center;
   border: 1px solid #1f1f1f;
   scroll-snap-align: start;
   position: relative;
@@ -181,7 +163,6 @@ footer p {
   font-weight: bold;
 }
 
-/* Badge */
 .badge-popular {
   position: absolute;
   top: -12px;
@@ -195,23 +176,11 @@ footer p {
   color: black;
 }
 
-/* Titles */
-.plan-title {
-  margin-top: 10px;
-  font-size: 18px;
-  font-weight: 700;
-}
+/* ---- PLAN ANUAL ---- */
 
-.plan-price {
-  margin-top: 12px;
-  font-size: 15px;
-  opacity: .9;
-}
-
-/* -------- PLAN ANUAL -------- */
 .anual-title {
-  margin-top: 35px;
   text-align: center;
+  margin-top: 35px;
   font-size: 20px;
   font-weight: 600;
 }
@@ -225,10 +194,9 @@ footer p {
 .anual-grid {
   display: grid;
   grid-template-columns: repeat(3,1fr);
-  max-width: 600px;
-  margin: auto;
   text-align: center;
-  font-size: 16px;
+  margin: auto;
+  max-width: 600px;
 }
 
 .anual-item {
@@ -240,12 +208,13 @@ footer p {
   font-size: 26px;
 }
 
-/* -------- BENEFICIOS -------- */
+/* ---- BENEFICIOS ---- */
+
 .beneficio-row {
   padding: 20px 0;
   border-bottom: 1px solid #222;
-  max-width: 900px;
   margin: auto;
+  max-width: 900px;
 }
 
 .beneficio-row p {
@@ -266,12 +235,13 @@ footer p {
   color: #00C8FF;
 }
 
-/* -------- MOBILE FIX -------- */
+/* ---- MOBILE FIX ---- */
 @media (max-width:600px) {
   .plan-card { min-width: 180px; }
   .plan-title { font-size: 16px; }
   .anual-grid { font-size: 14px; }
 }
+
 </style>
 </head>
 
