@@ -3,91 +3,167 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Tu Plataforma</title>
+<title>Plataforma+</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Inter', sans-serif;
-    background: #000;
-    color: white;
-  }
+/* ------------------- BASE ------------------- */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background: #000;
+  color: #fff;
+}
 
-  /* Fondo estilo Disney */
-  .hero {
-    width: 100%;
-    height: 520px;
-    background-size: cover;
-    background-position: center;
-    transition: background-image 1s ease-in-out;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-  }
+/* ------------------- HEADER ------------------- */
+header {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: flex-end;
+  z-index: 20;
+}
 
-  /* Degradado a negro abajo */
-  .overlay {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 60%;
-    background: linear-gradient(180deg, transparent, #000);
-  }
+header a {
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1.5px solid white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  backdrop-filter: blur(4px);
+  transition: .3s;
+}
 
-  .content {
-    position: absolute;
-    bottom: 20px;
-    width: 90%;
-    text-align: center;
-    left: 50%;
-    transform: translateX(-50%);
-  }
+header a:hover {
+  background: rgba(255,255,255,0.2);
+}
 
-  .logo {
-    width: 140px;
-    margin-bottom: 15px;
-  }
+/* ------------------- HERO ------------------- */
+.hero {
+  width: 100%;
+  height: 580px;
+  background-size: cover;
+  background-position: center;
+  transition: background-image 1s ease-in-out;
+  position: relative;
+}
 
-  h2 {
-    font-size: 22px;
-    font-weight: 600;
-    margin-bottom: 10px;
-  }
+.overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60%;
+  background: linear-gradient(180deg, transparent, #000);
+}
 
-  p {
-    font-size: 16px;
-    opacity: 0.8;
-  }
+.content {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  text-align: center;
+}
 
-  .form input {
-    width: 100%;
-    padding: 14px;
-    border-radius: 6px;
-    border: none;
-    margin-top: 12px;
-    font-size: 16px;
-  }
+.logo {
+  width: 160px;
+  margin-bottom: 15px;
+}
 
-  .btn {
-    width: 100%;
-    background: #00C8FF;
-    color: #000;
-    border: none;
-    padding: 14px;
-    font-size: 18px;
-    border-radius: 6px;
-    margin-top: 12px;
-    cursor: pointer;
-    font-weight: 600;
-  }
+h2 {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+p {
+  font-size: 16px;
+  opacity: 0.85;
+}
+
+.form input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 6px;
+  border: none;
+  margin-top: 12px;
+  font-size: 16px;
+}
+
+.btn {
+  width: 100%;
+  background: #00C8FF;
+  color: #000;
+  border: none;
+  padding: 14px;
+  font-size: 18px;
+  border-radius: 6px;
+  margin-top: 12px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* ------------------- SECCIONES ------------------- */
+.section-title {
+  margin: 40px 20px 10px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 15px;
+  padding: 0 20px 40px;
+}
+
+.card {
+  height: 160px;
+  border-radius: 8px;
+  background-size: cover;
+  background-position: center;
+}
+
+/* ------------------- FOOTER ------------------- */
+footer {
+  background: #050505;
+  padding: 40px 20px;
+  text-align: center;
+  opacity: 0.8;
+}
+
+footer .logos img {
+  height: 30px;
+  margin: 10px;
+}
+
+footer p {
+  margin-top: 20px;
+  font-size: 13px;
+  opacity: 0.6;
+}
+
+/* ------------------- RESPONSIVE ------------------- */
+@media (min-width: 768px) {
+  .hero { height: 700px; }
+
+  h2 { font-size: 32px; }
+  
+  .form input, .btn { max-width: 400px; margin-left: auto; margin-right: auto; }
+}
 </style>
 </head>
 
 <body>
+
+<header>
+  <a href="#">INICIAR SESIÓN</a>
+</header>
 
 <div class="hero" id="hero">
   <div class="overlay"></div>
@@ -95,9 +171,9 @@
   <div class="content">
     <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg" class="logo">
 
-    <h2>Series exclusivas, éxitos del cine, deportes y más</h2>
+    <h2>Series exclusivas, éxitos del cine y deportes</h2>
 
-    <p>Elige tu plan desde <b>COP 24.900/mes</b></p>
+    <p>Planes desde <b>COP 24.900/mes</b></p>
 
     <div class="form">
       <input type="email" placeholder="Correo electrónico">
@@ -106,26 +182,50 @@
   </div>
 </div>
 
+<!-- ------------------- SECCIONES ------------------- -->
+
+<h3 class="section-title">Populares</h3>
+<div class="grid">
+  <div class="card" style="background-image:url('https://i.imgur.com/QiAYwQK.jpeg');"></div>
+  <div class="card" style="background-image:url('https://i.imgur.com/ziI9sDx.jpeg');"></div>
+  <div class="card" style="background-image:url('https://i.imgur.com/3SYx7k3.jpeg');"></div>
+  <div class="card" style="background-image:url('https://i.imgur.com/hPIMO5d.jpeg');"></div>
+</div>
+
+<!-- ------------------- FOOTER ------------------- -->
+<footer>
+  <div class="logos">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Pixar_logo.svg">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/MarvelLogo.svg">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Star_Wars_Logo.svg">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/National-Geographic-Logo.svg">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg">
+  </div>
+
+  <p>© 2025 Plataforma+. Todos los derechos reservados.</p>
+</footer>
+
 <script>
-  // Imagenes proporcionadas por ti (orden perfecto)
-  const imagenes = [
-    "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/306F5EDFDA4042AE78A10D7B3534E05CB3E2828EF9538023A13C968C7EE44309/compose?format=webp&width=660",
-    "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/80990A540E73968454BF3FAFFE9F999388E337CDF36D20FB6AA56FE88CA15CB1/compose?format=webp&width=660",
-    "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/26484DDF52878CBA4E693A90CD7A4DC7026AE4857374A7D4E2EDB9CE58B9FE01/compose?format=webp&width=660",
-    "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/1B4EEE2BA8E6F5BC763BA1A4270B5E693C27FC7DB68A26F8DE9DB7118C947D4D/compose?format=webp&width=660",
-    "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/64DBED3E97AEAF24E2236E3D20A8D0F3C7269306EE6E518110C9344D6560C3C7/compose?format=webp&width=660"
-  ];
+// ------------------- SLIDER AUTOMÁTICO -------------------
+const imagenes = [
+  "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/306F5EDFDA4042AE78A10D7B3534E05CB3E2828EF9538023A13C968C7EE44309/compose?format=webp&width=660",
+  "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/80990A540E73968454BF3FAFFE9F999388E337CDF36D20FB6AA56FE88CA15CB1/compose?format=webp&width=660",
+  "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/26484DDF52878CBA4E693A90CD7A4DC7026AE4857374A7D4E2EDB9CE58B9FE01/compose?format=webp&width=660",
+  "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/1B4EEE2BA8E6F5BC763BA1A4270B5E693C27FC7DB68A26F8DE9DB7118C947D4D/compose?format=webp&width=660",
+  "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/64DBED3E97AEAF24E2236E3D20A8D0F3C7269306EE6E518110C9344D6560C3C7/compose?format=webp&width=660"
+];
 
-  let index = 0;
-  const hero = document.getElementById("hero");
+let index = 0;
+const hero = document.getElementById("hero");
 
-  function cambiarFondo() {
-    hero.style.backgroundImage = `url('${imagenes[index]}')`;
-    index = (index + 1) % imagenes.length;
-  }
+function cambiarFondo() {
+  hero.style.backgroundImage = `url('${imagenes[index]}')`;
+  index = (index + 1) % imagenes.length;
+}
 
-  cambiarFondo(); 
-  setInterval(cambiarFondo, 4000); // cambia cada 4 segundos
+cambiarFondo();
+setInterval(cambiarFondo, 4000);
 </script>
 
 </body>
