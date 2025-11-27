@@ -8,7 +8,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-/* ------------------- BASE ------------------- */
+
+/* ------------------------------------------------ */
+/* BASE GENERAL */
+/* ------------------------------------------------ */
+
 html, body {
   margin: 0;
   padding: 0;
@@ -24,7 +28,10 @@ html, body {
   max-width: 100%;
 }
 
-/* ------------------- HEADER ------------------- */
+/* ------------------------------------------------ */
+/* HEADER */
+/* ------------------------------------------------ */
+
 header {
   width: 100%;
   position: absolute;
@@ -48,11 +55,10 @@ header a {
   letter-spacing: 1px;
 }
 
-header a:hover {
-  background: rgba(255,255,255,0.2);
-}
+/* ------------------------------------------------ */
+/* HERO */
+/* ------------------------------------------------ */
 
-/* ------------------- HERO ------------------- */
 .hero {
   width: 100%;
   height: 580px;
@@ -110,7 +116,6 @@ p {
   font-weight: 300;
 }
 
-/* Botón Suscribirme */
 .btn {
   width: 100%;
   background: #00C8FF;
@@ -125,17 +130,15 @@ p {
   letter-spacing: 2px;
 }
 
-/* ============================================================
-   SECCIÓN PLANES – ESTILO ORIGINAL DISNEY+ EXACTO
-============================================================ */
+/* ------------------------------------------------ */
+/* SECCIÓN PLANES EXACTA COMO LA IMAGEN */
+/* ------------------------------------------------ */
 
-/* CONTENEDOR */
 .populares-container {
   background: #000;
   padding: 35px 15px;
 }
 
-/* SCROLLER */
 .populares-planes {
   display: flex;
   gap: 12px;
@@ -144,9 +147,10 @@ p {
   scroll-snap-type: x mandatory;
 }
 
-/* Cards estilo Disney+ */
+/* Tarjeta */
 .plan-card {
   min-width: 180px;
+  background: #174B52; /* FONDO FIJO */
   padding: 18px 14px;
   border-radius: 14px;
   border: none;
@@ -155,15 +159,6 @@ p {
   scroll-snap-align: start;
   transition: .25s ease;
   position: relative;
-  
-  /* FONDO INACTIVO EXACTO */
-  background: #174B52;
-}
-
-/* Fondo del activo */
-.plan-card.active {
-  background: #00C8D2;
-  transform: scale(1.03);
 }
 
 /* TÍTULO INACTIVO */
@@ -171,42 +166,49 @@ p {
   font-size: 17px;
   letter-spacing: 2px;
   font-weight: 300;
-  color: #A7DCE4;
+  color: #A7DCE4; /* AZUL APAGADO */
 }
 
-/* TÍTULO ACTIVO EXACTO */
-.plan-card.active .plan-title {
-  color: #00333A !important;
-}
-
-/* PRECIOS (siempre blancos) */
+/* PRECIO (NO CAMBIA) */
 .plan-price {
   margin-top: 10px;
   font-size: 14px;
   font-weight: 300;
-  color: rgba(255,255,255,0.9);
+  color: white;
+  opacity: .9;
+  line-height: 1.5;
 }
 
-/* Precio activo igual a Disney+ */
+/* TÍTULO ACTIVO (SOLO EL TEXTO CAMBIA) */
+.plan-card.active .plan-title {
+  color: #00C8D2;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* PRECIO ACTIVO (IGUAL A SIEMPRE) */
 .plan-card.active .plan-price {
-  color: #00333A !important;
+  color: white;
 }
 
-/* Badge “Más popular” */
+/* Badge */
 .badge-popular {
   position: absolute;
   top: -14px;
   left: 50%;
   transform: translateX(-50%);
-  background: #D6F8FF;
-  color: #004A55;
+  background: #E5E7EB;
+  color: #000;
   font-size: 11px;
   font-weight: 600;
   padding: 3px 12px;
   border-radius: 20px;
 }
 
-/* DETALLE DEL PLAN */
+/* ------------------------------------------------ */
+/* DETALLE PLAN */
+/* ------------------------------------------------ */
+
 #detalle-plan {
   background: #111;
   border: 1px solid #222;
@@ -236,9 +238,9 @@ p {
   letter-spacing: 1px;
 }
 
-/* ================================================= */
-/*               SECCIÓN ESPN + DISNEY+              */
-/* ================================================= */
+/* ------------------------------------------------ */
+/* ESPN */
+/* ------------------------------------------------ */
 
 .espn-section {
   padding: 40px 20px;
@@ -256,11 +258,6 @@ p {
   opacity: 0.9;
 }
 
-.espn-arrow {
-  margin: 20px 0;
-  opacity: .7;
-}
-
 .plan-premium-btn {
   margin-top: 20px;
   border: 1.5px solid #fff;
@@ -272,7 +269,10 @@ p {
   cursor: pointer;
 }
 
+/* ------------------------------------------------ */
 /* FOOTER */
+/* ------------------------------------------------ */
+
 footer {
   padding: 50px 20px;
   text-align: center;
@@ -297,6 +297,7 @@ footer p {
   opacity: .7;
   font-size: 14px;
 }
+
 </style>
 </head>
 
@@ -309,6 +310,7 @@ footer p {
 <!-- HERO -->
 <div class="hero" id="hero">
   <div class="overlay"></div>
+
   <div class="content">
     <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg" class="logo">
 
@@ -323,7 +325,7 @@ footer p {
   </div>
 </div>
 
-<!-- PLANES EXACTOS DEBAJO -->
+<!-- PLANES -->
 <div class="populares-container">
 
   <div class="populares-planes">
@@ -350,7 +352,7 @@ footer p {
 
 </div>
 
-<!-- SECCIÓN ESPN + DISNEY -->
+<!-- ESPN -->
 <div class="espn-section">
 
   <p>
@@ -365,12 +367,6 @@ footer p {
     <img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Star_Wars_Logo.svg">
     <img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/National-Geographic-Logo.svg">
     <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg">
-  </div>
-
-  <div class="espn-arrow">
-    <svg width="26" height="26" fill="#fff" viewBox="0 0 24 24">
-      <path d="M12 16.5l-8-8h16l-8 8z"/>
-    </svg>
   </div>
 
   <img src="https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/64DBED3E97AEAF24E2236E3D20A8D0F3C7269306EE6E518110C9344D6560C3C7/compose?format=webp&width=660"
@@ -401,6 +397,7 @@ footer p {
 
 <!-- SCRIPT -->
 <script>
+
 const imagenes = [
   "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/306F5EDFDA4042AE78A10D7B3534E05CB3E2828EF9538023A13C968C7EE44309/compose?format=webp&width=660",
   "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/80990A540E73968454BF3FAFFE9F999388E337CDF36D20FB6AA56FE88CA15CB1/compose?format=webp&width=660",
@@ -420,6 +417,7 @@ function cambiarFondo() {
 cambiarFondo();
 setInterval(cambiarFondo, 4000);
 
+/* DETALLES DE PLANES */
 const detallesPlanes = {
   "PREMIUM": `
     <h3>Detalles del plan PREMIUM</h3>
@@ -450,6 +448,7 @@ const detallesPlanes = {
 const cards = document.querySelectorAll(".plan-card");
 const detalleBox = document.getElementById("detalle-plan");
 
+/* FUNCIÓN DE SELECCIÓN REALISTA COMO DISNEY+ */
 cards.forEach(card => {
   card.addEventListener("click", () => {
 
@@ -464,6 +463,7 @@ cards.forEach(card => {
     detalleBox.scrollIntoView({ behavior: "smooth" });
   });
 });
+
 </script>
 
 </body>
