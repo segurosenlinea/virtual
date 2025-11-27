@@ -107,7 +107,7 @@ p {
   font-size: 16px;
   background: #1E1E1E;
   color: #fff;
-  font-weight: 300;  /* LETRA DELGADA */
+  font-weight: 300;
 }
 
 /* Botón Suscribirme */
@@ -126,14 +126,16 @@ p {
 }
 
 /* ============================================================
-   SECCIÓN PLANES – IGUAL A DISNEY+ (FULL ORIGINAL)
+   SECCIÓN PLANES – ESTILO ORIGINAL DISNEY+ EXACTO
 ============================================================ */
 
+/* CONTENEDOR */
 .populares-container {
   background: #000;
   padding: 35px 15px;
 }
 
+/* SCROLLER */
 .populares-planes {
   display: flex;
   gap: 12px;
@@ -142,76 +144,52 @@ p {
   scroll-snap-type: x mandatory;
 }
 
-.populares-planes::-webkit-scrollbar {
-  height: 4px;
-}
-.populares-planes::-webkit-scrollbar-thumb {
-  background: #222;
-  border-radius: 50px;
-}
-
-/* CARD PLAN */
-
-
-
-  /* ---- ESTILO TARJETAS DE PLANES EXACTO DISNEY+ ---- */
-
+/* Cards estilo Disney+ */
 .plan-card {
-  min-width: 200px;
-  background: #13414F;      /* Azul apagado */
-  border-radius: 10px;
-  padding: 18px;
-  flex-shrink: 0;
+  min-width: 180px;
+  padding: 18px 14px;
+  border-radius: 14px;
+  border: none;
   text-align: center;
-  border: 1px solid #1f1f1f00;
-  scroll-snap-align: start;
   cursor: pointer;
-  transition: .2s;
-  color: #9AD4DD;           /* Letras azul apagado */
-  font-weight: 300;
-  letter-spacing: 2px;
+  scroll-snap-align: start;
+  transition: .25s ease;
+  position: relative;
+  
+  /* FONDO INACTIVO EXACTO */
+  background: #174B52;
 }
 
+/* Fondo del activo */
 .plan-card.active {
-  background: #00C8FF;      /* ACTIVO turquesa original */
-  color: #002834;           /* Letras oscuras casi negras */
-  font-weight: 400;
-  transform: scale(1.05);
+  background: #00C8D2;
+  transform: scale(1.03);
 }
 
-.plan-title {
-  font-size: 18px;
-  font-weight: 300;
-  letter-spacing: 2px;
-}
-
-.plan-price {
-  margin-top: 12px;
-  font-size: 15px;
-  opacity: .9;
-  font-weight: 300;
-  letter-spacing: 1px;
-}
-
-
-.plan-card.active {
-  background: #00C8FF;
-  color: #000;
-  transform: translateY(-3px);
-}
-
+/* TÍTULO INACTIVO */
 .plan-title {
   font-size: 17px;
   letter-spacing: 2px;
   font-weight: 300;
+  color: #A7DCE4;
 }
 
+/* TÍTULO ACTIVO EXACTO */
+.plan-card.active .plan-title {
+  color: #00333A !important;
+}
+
+/* PRECIOS (siempre blancos) */
 .plan-price {
   margin-top: 10px;
   font-size: 14px;
   font-weight: 300;
-  opacity: .85;
-  line-height: 1.5;
+  color: rgba(255,255,255,0.9);
+}
+
+/* Precio activo igual a Disney+ */
+.plan-card.active .plan-price {
+  color: #00333A !important;
 }
 
 /* Badge “Más popular” */
@@ -220,15 +198,15 @@ p {
   top: -14px;
   left: 50%;
   transform: translateX(-50%);
-  background: #E5E7EB;
-  color: #000;
+  background: #D6F8FF;
+  color: #004A55;
   font-size: 11px;
   font-weight: 600;
   padding: 3px 12px;
   border-radius: 20px;
 }
 
-/* ---- DETALLE DEL PLAN ---- */
+/* DETALLE DEL PLAN */
 #detalle-plan {
   background: #111;
   border: 1px solid #222;
@@ -294,10 +272,7 @@ p {
   cursor: pointer;
 }
 
-/* ================================================= */
-/*                     FOOTER                        */
-/* ================================================= */
-
+/* FOOTER */
 footer {
   padding: 50px 20px;
   text-align: center;
