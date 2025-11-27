@@ -117,54 +117,39 @@ p {
 }
 
 /* ================================================= */
-/*    SECCIÓN ESTILO ADDI (DESPUÉS DE SUSCRIBIRME)   */
+/*    SECCIÓN DISNEY+ + ESPN (la correcta)           */
 /* ================================================= */
 
-.addi-section {
-  background: #fff;
-  color: #000;
-  padding: 40px 25px;
-  border-radius: 0 0 30px 30px;
-}
-
-.addi-title {
-  font-size: 28px;
-  font-weight: 700;
-  margin-top: 10px;
-}
-
-.addi-sub {
-  font-size: 16px;
-  opacity: 0.8;
-  margin: 10px 0 25px;
-}
-
-.addi-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  margin-bottom: 20px;
-  font-size: 15px;
-}
-
-.addi-btn {
-  width: 100%;
-  background: #3F6DFD;
-  padding: 15px;
-  color: white;
+.espn-section {
+  padding: 40px 20px;
   text-align: center;
-  border-radius: 30px;
-  font-size: 18px;
-  font-weight: 600;
+}
+
+.espn-section a {
+  color: #00C8FF;
+  text-decoration: underline;
+}
+
+.espn-logos img {
+  height: 26px;
+  margin: 5px 6px;
+  opacity: 0.9;
+}
+
+.espn-arrow {
+  margin: 20px 0;
+  opacity: .7;
+}
+
+.plan-premium-btn {
   margin-top: 20px;
-}
-
-.addi-link {
-  display: block;
-  margin-top: 18px;
-  text-align: center;
+  border: 1.5px solid #fff;
+  background: none;
+  color: #fff;
+  padding: 10px 28px;
+  border-radius: 20px;
   font-weight: 600;
-  color: #3F6DFD;
+  cursor: pointer;
 }
 
 /* ================================================= */
@@ -229,7 +214,7 @@ p {
   border-radius: 12px;
   margin-top: 25px;
   display: none;
-  animation: aparecer 0.3s ease;
+  animation: aparecer .3s ease;
 }
 
 .btn-comprar {
@@ -243,13 +228,7 @@ p {
   margin-top: 20px;
   cursor: pointer;
   font-weight: 700;
-  text-align: center;
   display: block;
-}
-
-@keyframes aparecer {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 </style>
 </head>
@@ -278,30 +257,42 @@ p {
 </div>
 
 <!-- ================================================= -->
-<!--     SECCIÓN ESTILO ADDI DESPUÉS DE SUSCRIBIRME    -->
+<!--     SECCIÓN CORRECTA: ESPN + DISNEY+             -->
 <!-- ================================================= -->
 
-<div class="addi-section">
+<div class="espn-section">
 
-  <h1 class="addi-title">Compra a cuotas lo que quieres</h1>
-
-  <p class="addi-sub">
-    Si no has comprado con nosotros antes, pide un cupo para conocer el valor que podemos aprobar para ti.
+  <p>
+    Ahorra desde 30% en <a>Disney+ Premium Anual</a>.<br>
+    <a>Ver detalles de los planes.</a>
   </p>
 
-  <div class="addi-item">
-    <span>📄</span>
-    <p>Sólo necesitas tu cédula y WhatsApp para aplicar.</p>
+  <div class="espn-logos">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Pixar_logo.svg">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/MarvelLogo.svg">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Star_Wars_Logo.svg">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/8/8f/National-Geographic-Logo.svg">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/ESPN_wordmark.svg">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Hulu_Logo.svg/2560px-Hulu_Logo.svg.png">
   </div>
 
-  <div class="addi-item">
-    <span>⏱️</span>
-    <p>La aprobación toma solo unos minutos. Aplicar es fácil y rápido.</p>
+  <div class="espn-arrow">
+    <svg width="26" height="26" fill="#fff" viewBox="0 0 24 24">
+      <path d="M12 16.5l-8-8h16l-8 8z"/>
+    </svg>
   </div>
 
-  <div class="addi-btn">Pedir un cupo</div>
+  <img src="https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/306F5EDFDA4042AE78A10D7B3534E05CB3E2828EF9538023A13C968C7EE44309/compose?format=webp&width=1200"
+       style="width:100%; border-radius:10px;">
 
-  <a class="addi-link">Ya soy cliente, ver mi cupo</a>
+  <button class="plan-premium-btn">Plan Premium</button>
+
+  <p style="margin-top:20px; opacity:.85; line-height:1.5;">
+    El deporte de ESPN y los eventos en vivo que te apasionan los<br>
+    encontrás en el plan Premium de Disney+.
+  </p>
+
 </div>
 
 <!-- ================================================= -->
@@ -330,7 +321,6 @@ p {
 
   </div>
 
-  <!-- Caja de detalles -->
   <div id="detalle-plan"></div>
 
 </div>
@@ -344,7 +334,7 @@ p {
 </footer>
 
 <script>
-// ------------------- SLIDER AUTOMÁTICO -------------------
+// SLIDER
 const imagenes = [
   "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/306F5EDFDA4042AE78A10D7B3534E05CB3E2828EF9538023A13C968C7EE44309/compose?format=webp&width=660",
   "https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/80990A540E73968454BF3FAFFE9F999388E337CDF36D20FB6AA56FE88CA15CB1/compose?format=webp&width=660",
@@ -364,8 +354,7 @@ function cambiarFondo() {
 cambiarFondo();
 setInterval(cambiarFondo, 4000);
 
-
-// ------------------- DETALLES CON BOTÓN -------------------
+// DETALLES PLANES
 const detallesPlanes = {
   "PREMIUM": `
     <h3>Detalles del plan PREMIUM</h3>
@@ -396,8 +385,6 @@ const detallesPlanes = {
   `
 };
 
-
-// ------------------- SELECCIÓN DE PLAN -------------------
 const cards = document.querySelectorAll(".plan-card");
 const detalleBox = document.getElementById("detalle-plan");
 
@@ -409,10 +396,10 @@ cards.forEach(card => {
 
     const planTitle = card.getAttribute("data-plan");
 
-    detalleBox.innerHTML = detallesPlanes[planTitle] || "<p>Detalles no disponibles.</p>";
+    detalleBox.innerHTML = detallesPlanes[planTitle];
     detalleBox.style.display = "block";
 
-    detalleBox.scrollIntoView({ behavior: "smooth", block: "start" });
+    detalleBox.scrollIntoView({ behavior: "smooth" });
   });
 });
 </script>
