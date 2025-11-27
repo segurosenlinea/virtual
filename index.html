@@ -25,13 +25,13 @@
         font-size: 45px;
         font-weight: 700;
         color: #2F6BFF;
-        margin-bottom: 20px;
+        margin-bottom: 25px;
     }
 
     h1 {
         font-size: 20px;
         font-weight: 700;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
     }
 
     p {
@@ -45,26 +45,28 @@
         display: flex;
         align-items: center;
         gap: 10px;
-        margin-top: 18px;
-        font-size: 11px;
+        margin-top: 16px;
+        font-size: 12px;
     }
 
     .icon-text span.emoji {
-        font-size: 15px;
+        font-size: 16px;
     }
 
     footer {
-        font-size: 10px;
-        margin-top: 35px;
+        font-size: 11px;
+        margin-top: 45px;
         color: #7a7a7a;
         line-height: 1.4;
+        text-align: left;
     }
 
+    /* BOTÓN */
     .btn {
         display: block;
-        width: 100%;
-        text-align: center;
-        margin-top: 35px;
+        width: 90%;
+        max-width: 500px;
+        margin: 35px auto 15px auto;
         padding: 15px;
         background: #3B63FF;
         color: white;
@@ -72,17 +74,68 @@
         font-size: 17px;
         font-weight: 600;
         text-decoration: none;
+        text-align: center;
     }
 
+    /* ENLACE INFERIOR */
     .link {
         display: block;
+        width: 100%;
         text-align: center;
-        margin-top: 18px;
         font-size: 15px;
         font-weight: 600;
         color: #3B63FF;
         text-decoration: none;
+        margin-top: 10px;
     }
+
+    /* ------------------------- */
+    /* RESPONSIVE (CELULAR/IPHONE) */
+    /* ------------------------- */
+    @media (max-width: 480px) {
+        .logo {
+            font-size: 40px;
+        }
+
+        h1 {
+            font-size: 18px;
+        }
+
+        p {
+            font-size: 13px;
+        }
+
+        .icon-text {
+            font-size: 11px;
+        }
+
+        footer {
+            font-size: 10px;
+        }
+
+        .btn {
+            width: 95%;
+            font-size: 16px;
+        }
+    }
+
+    /* ------------------------- */
+    /* RESPONSIVE (PC GRANDE) */
+    /* ------------------------- */
+    @media (min-width: 1024px) {
+        .container {
+            margin-top: 40px;
+        }
+
+        .logo {
+            font-size: 55px;
+        }
+
+        h1 {
+            font-size: 22px;
+        }
+    }
+
 </style>
 </head>
 <body>
@@ -105,8 +158,6 @@
         <span>La aprobación toma sólo unos minutos. Aplicar es fácil y rápido.</span>
     </div>
 
-   
-<br>  <br><br><br><br><br><br><br><br><br><br><br>
     <footer>
         La aprobación del cupo está sujeta a criterios de elegibilidad de Addi.
         Conoce los <span style="color:#3B63FF;">términos y condiciones</span> del cupo.
@@ -114,7 +165,7 @@
 
     <a href="#" class="btn">Pedir un cupo</a>
 
-     <a href="#" class="link">Ya Soy cliente Addi, cupo desembolso Efectivo</a>
+    <a href="#" class="link">Ya Soy cliente Addi, cupo desembolso Efectivo</a>
 
 </div>
 
