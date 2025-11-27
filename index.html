@@ -1,142 +1,120 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Solicitud</title>
-    <style>
-        /* Estilos generales del formulario */
-        body {
-            font-family: system-ui, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background-color: #f5f5f5;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Addi - Compra a cuotas</title>
 
-        .form-container {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 400px;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-        .form-group {
-            margin-bottom: 1rem;
-        }
+<style>
+    body {
+        margin: 0;
+        font-family: 'Inter', sans-serif;
+        background-color: #ffffff;
+        color: #1f1f1f;
+    }
 
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
-            color: #333;
-        }
+    .container {
+        max-width: 700px;
+        margin: auto;
+        padding: 20px;
+    }
 
-        input[type="text"] {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
-            font-size: 16px;
-        }
+    /* Logo */
+    .logo {
+        font-size: 48px;
+        font-weight: 700;
+        color: #2F6BFF;
+    }
 
-        input[type="text"]:focus {
-            outline: none;
-            border-color: #3CBC8D;
-            box-shadow: 0 0 5px rgba(60, 188, 141, 0.3);
-        }
+    /* Título */
+    h1 {
+        font-size: 32px;
+        font-weight: 700;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
 
-        /* Estilos para el botón */
-        .btn {
-            background-color: #04AA6D;
-            border: none;
-            color: white;
-            padding: 16px 32px;
-            text-decoration: none;
-            margin: 4px 2px;
-            cursor: pointer;
-            width: 100%;
-            border-radius: 4px;
-            font-size: 16px;
-            font-weight: bold;
-        }
+    p {
+        font-size: 16px;
+        line-height: 1.5;
+        color: #4c4c4c;
+    }
 
-        .btn:hover {
-            background-color: #038a5a;
-        }
+    .icon-text {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 20px;
+        font-size: 16px;
+    }
 
-        /* Estilos para la casilla de verificación personalizada */
-        .checkbox-container {
-            display: flex;
-            align-items: center;
-            margin: 1.5rem 0;
-            font-size: 0.9rem;
-        }
+    .icon-text img {
+        width: 22px;
+    }
 
-        .custom-checkbox {
-            -webkit-appearance: none;
-            appearance: none;
-            background-color: #fff;
-            margin: 0;
-            margin-right: 0.5rem;
-            font: inherit;
-            color: currentColor;
-            width: 1.15em;
-            height: 1.15em;
-            border: 0.15em solid currentColor;
-            border-radius: 0.15em;
-            transform: translateY(-0.075em);
-            display: grid;
-            place-content: center;
-        }
+    /* Botón */
+    .btn {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-top: 40px;
+        padding: 16px;
+        background-color: #3B63FF;
+        color: white;
+        border-radius: 40px;
+        font-size: 18px;
+        font-weight: 600;
+        text-decoration: none;
+    }
 
-        .custom-checkbox::before {
-            content: "";
-            width: 0.65em;
-            height: 0.65em;
-            transform: scale(0);
-            transition: 120ms transform ease-in-out;
-            box-shadow: inset 1em 1em #04AA6D;
-            transform-origin: bottom left;
-            clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
-        }
+    .link {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 16px;
+        font-weight: 600;
+        color: #3B63FF;
+        text-decoration: none;
+    }
 
-        .custom-checkbox:checked::before {
-            transform: scale(1);
-        }
-
-        .checkbox-label {
-            line-height: 1.2;
-        }
-    </style>
+    footer {
+        margin-top: 40px;
+        font-size: 14px;
+        color: #7d7d7d;
+        line-height: 1.4;
+    }
+</style>
 </head>
 <body>
-    <div class="form-container">
-        <form>
-            <div class="form-group">
-                <label for="document">Número de documento</label>
-                <input type="text" id="document" name="document" placeholder="Ingresa tu documento">
-            </div>
 
-            <div class="form-group">
-                <label for="phone">Número de celular</label>
-                <input type="text" id="phone" name="phone" placeholder="Ingresa tu celular">
-            </div>
+<div class="container">
 
-            <div class="checkbox-container">
-                <input type="checkbox" id="terms" class="custom-checkbox">
-                <label for="terms" class="checkbox-label">
-                    Acepto los <a href="#">Términos y Condiciones</a> y la <a href="#">Política de Privacidad</a>
-                </label>
-            </div>
+    <div class="logo">Addi</div>
 
-            <button type="submit" class="btn">Continuar</button>
-        </form>
+    <h1>Compra a cuotas lo que quieres</h1>
+
+    <p>Si no has comprado con Addi antes, pide un cupo para conocer el valor que podemos aprobar para ti.</p>
+
+    <div class="icon-text">
+        <img src="https://cdn-icons-png.flaticon.com/512/709/709682.png">
+        <span>Sólo necesitas tu cédula y WhatsApp para aplicar.</span>
     </div>
+
+    <div class="icon-text">
+        <img src="https://cdn-icons-png.flaticon.com/512/2088/2088617.png">
+        <span>La aprobación toma sólo unos minutos. Aplicar es fácil y rápido.</span>
+    </div>
+
+    <footer>
+        La aprobación del cupo está sujeta a criterios de elegibilidad de Addi.
+        Conoce los <span style="color:#3B63FF;">términos y condiciones</span> del cupo.
+    </footer>
+
+    <a href="#" class="btn">Pedir un cupo</a>
+
+    <a href="#" class="link">Ya soy cliente, ver mi cupo</a>
+</div>
+
 </body>
 </html>
