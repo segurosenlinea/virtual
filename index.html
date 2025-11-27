@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Addi - Compra a cuotas</title>
+<title>Addi</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
     body {
         margin: 0;
         font-family: 'Inter', sans-serif;
-        background-color: #ffffff;
+        background: #fff;
         color: #1f1f1f;
     }
 
@@ -21,68 +21,67 @@
         padding: 20px;
     }
 
-    /* Logo */
     .logo {
-        font-size: 48px;
+        font-size: 45px;
         font-weight: 700;
         color: #2F6BFF;
+        margin-bottom: 20px;
     }
 
-    /* Título */
     h1 {
-        font-size: 32px;
+        font-size: 28px;
         font-weight: 700;
-        margin-top: 10px;
         margin-bottom: 10px;
     }
 
     p {
-        font-size: 16px;
+        font-size: 15px;
+        color: #4b4b4b;
         line-height: 1.5;
-        color: #4c4c4c;
+        margin-bottom: 15px;
     }
 
     .icon-text {
         display: flex;
         align-items: center;
         gap: 10px;
-        margin-top: 20px;
-        font-size: 16px;
+        margin-top: 18px;
+        font-size: 15px;
     }
 
-    .icon-text img {
-        width: 22px;
+    .icon-text span.emoji {
+        font-size: 20px;
     }
 
-    /* Botón */
+    footer {
+        font-size: 13px;
+        margin-top: 35px;
+        color: #7a7a7a;
+        line-height: 1.4;
+    }
+
     .btn {
         display: block;
         width: 100%;
         text-align: center;
-        margin-top: 40px;
-        padding: 16px;
-        background-color: #3B63FF;
+        margin-top: 35px;
+        padding: 15px;
+        background: #3B63FF;
         color: white;
         border-radius: 40px;
-        font-size: 18px;
+        font-size: 17px;
         font-weight: 600;
         text-decoration: none;
     }
 
     .link {
+        display: block;
         text-align: center;
-        margin-top: 20px;
-        font-size: 16px;
+        margin-top: 18px;
+        font-size: 15px;
         font-weight: 600;
         color: #3B63FF;
         text-decoration: none;
-    }
-
-    footer {
-        margin-top: 40px;
-        font-size: 14px;
-        color: #7d7d7d;
-        line-height: 1.4;
     }
 </style>
 </head>
@@ -97,12 +96,12 @@
     <p>Si no has comprado con Addi antes, pide un cupo para conocer el valor que podemos aprobar para ti.</p>
 
     <div class="icon-text">
-        <img src="https://cdn-icons-png.flaticon.com/512/709/709682.png">
+        <span class="emoji">🪪</span>
         <span>Sólo necesitas tu cédula y WhatsApp para aplicar.</span>
     </div>
 
     <div class="icon-text">
-        <img src="https://cdn-icons-png.flaticon.com/512/2088/2088617.png">
+        <span class="emoji">🕒</span>
         <span>La aprobación toma sólo unos minutos. Aplicar es fácil y rápido.</span>
     </div>
 
@@ -114,6 +113,7 @@
     <a href="#" class="btn">Pedir un cupo</a>
 
     <a href="#" class="link">Ya soy cliente, ver mi cupo</a>
+
 </div>
 
 </body>
