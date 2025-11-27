@@ -192,7 +192,6 @@ p {
 }
 
 /* ---- DETALLE DEL PLAN ---- */
-
 #detalle-plan {
   background: #111;
   border: 1px solid #222;
@@ -208,8 +207,23 @@ p {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ---- PLAN ANUAL ---- */
+/* ---- BOTÓN DE COMPRA ---- */
+.btn-comprar {
+  width: 100%;
+  background: #00C8FF;
+  color: #000;
+  border: none;
+  padding: 14px;
+  font-size: 18px;
+  border-radius: 6px;
+  margin-top: 20px;
+  cursor: pointer;
+  font-weight: 700;
+  text-align: center;
+  display: block;
+}
 
+/* ---- ANUAL ---- */
 .anual-title {
   text-align: center;
   margin-top: 35px;
@@ -241,7 +255,6 @@ p {
 }
 
 /* ---- BENEFICIOS ---- */
-
 .beneficio-row {
   padding: 20px 0;
   border-bottom: 1px solid #222;
@@ -273,7 +286,6 @@ p {
   .plan-title { font-size: 16px; }
   .anual-grid { font-size: 14px; }
 }
-
 </style>
 </head>
 
@@ -326,7 +338,7 @@ p {
 
   </div>
 
-  <!-- Caja donde aparecerán los detalles -->
+  <!-- Caja de detalles -->
   <div id="detalle-plan"></div>
 
   <h3 class="anual-title">Plan anual</h3>
@@ -416,7 +428,7 @@ cambiarFondo();
 setInterval(cambiarFondo, 4000);
 
 
-// ------------------- DETALLES DE CADA PLAN -------------------
+// ------------------- DETALLES CON BOTÓN -------------------
 const detallesPlanes = {
   "PREMIUM": `
     <h3>Detalles del plan PREMIUM</h3>
@@ -424,6 +436,8 @@ const detallesPlanes = {
     <p>✔ Máxima calidad 4K UHD + HDR</p>
     <p>✔ Descargas ilimitadas</p>
     <p>✔ Contenido sin anuncios</p>
+
+    <a href="#" class="btn-comprar">Comprar plan PREMIUM</a>
   `,
   "ESTÁNDAR": `
     <h3>Detalles del plan ESTÁNDAR</h3>
@@ -431,6 +445,8 @@ const detallesPlanes = {
     <p>✔ Calidad Full HD</p>
     <p>✔ Descargas disponibles</p>
     <p>✔ Sin anuncios</p>
+
+    <a href="#" class="btn-comprar">Comprar plan ESTÁNDAR</a>
   `,
   "ESTÁNDAR CON ANUNCIOS": `
     <h3>Detalles del plan ESTÁNDAR CON ANUNCIOS</h3>
@@ -438,6 +454,8 @@ const detallesPlanes = {
     <p>✔ Calidad HD</p>
     <p>✔ Incluye anuncios moderados</p>
     <p>✔ No permite descargas</p>
+
+    <a href="#" class="btn-comprar">Comprar plan con anuncios</a>
   `
 };
 
