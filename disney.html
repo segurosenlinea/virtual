@@ -135,7 +135,7 @@ footer p {
 }
 
 /* ================================================= */
-/*      SECCIÓN POPULARES – ESTILO DISNEY+          */
+/*      SECCIÓN POPULARES – ESTILO DISNEY+ MOBILE   */
 /* ================================================= */
 
 .populares-container {
@@ -145,23 +145,34 @@ footer p {
   font-family: 'Inter', sans-serif;
 }
 
+/* -------- PLANES -------- */
 .populares-planes {
   display: flex;
   gap: 15px;
-  justify-content: center;
   overflow-x: auto;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
+  scroll-snap-type: x mandatory;
 }
 
-/* Tarjetas de planes */
+.populares-planes::-webkit-scrollbar {
+  height: 6px;
+}
+
+.populares-planes::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
 .plan-card {
-  min-width: 200px;
+  min-width: 210px;
   background: #111;
   border-radius: 12px;
   padding: 18px;
   text-align: center;
-  position: relative;
+  flex-shrink: 0;
   border: 1px solid #1f1f1f;
+  scroll-snap-align: start;
+  position: relative;
 }
 
 .plan-card.active {
@@ -170,6 +181,7 @@ footer p {
   font-weight: bold;
 }
 
+/* Badge */
 .badge-popular {
   position: absolute;
   top: -12px;
@@ -183,6 +195,7 @@ footer p {
   color: black;
 }
 
+/* Titles */
 .plan-title {
   margin-top: 10px;
   font-size: 18px;
@@ -195,7 +208,7 @@ footer p {
   opacity: .9;
 }
 
-/* Plan anual */
+/* -------- PLAN ANUAL -------- */
 .anual-title {
   margin-top: 35px;
   text-align: center;
@@ -222,7 +235,12 @@ footer p {
   padding: 10px 0;
 }
 
-/* Tabla de beneficios */
+.minus {
+  opacity: .4;
+  font-size: 26px;
+}
+
+/* -------- BENEFICIOS -------- */
 .beneficio-row {
   padding: 20px 0;
   border-bottom: 1px solid #222;
@@ -248,16 +266,11 @@ footer p {
   color: #00C8FF;
 }
 
-.minus {
-  opacity: .4;
-  font-size: 26px;
-}
-
-/* Responsive */
+/* -------- MOBILE FIX -------- */
 @media (max-width:600px) {
-  .plan-card {
-    min-width: 170px;
-  }
+  .plan-card { min-width: 180px; }
+  .plan-title { font-size: 16px; }
+  .anual-grid { font-size: 14px; }
 }
 </style>
 </head>
@@ -286,7 +299,7 @@ footer p {
 </div>
 
 <!-- ================================================= -->
-<!--      SECCIÓN POPULARES (PLANES DISNEY+)          -->
+<!--        SECCIÓN POPULARES (PLANES DISNEY+)        -->
 <!-- ================================================= -->
 
 <div class="populares-container">
