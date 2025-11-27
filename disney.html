@@ -62,7 +62,6 @@ header a:hover {
   overflow: hidden;
 }
 
-
 .overlay {
   position: absolute;
   bottom: 0;
@@ -118,7 +117,7 @@ p {
 }
 
 /* ================================================= */
-/*         SECCIÓN POPULARES – 100% MOBILE FIX       */
+/*         SECCIÓN PLANES – 100% MOBILE FIX          */
 /* ================================================= */
 
 .populares-container {
@@ -156,12 +155,15 @@ p {
   border: 1px solid #1f1f1f;
   scroll-snap-align: start;
   position: relative;
+  cursor: pointer;
+  transition: .2s;
 }
 
 .plan-card.active {
   background: #00C8FF;
   color: black;
   font-weight: bold;
+  transform: scale(1.05);
 }
 
 .badge-popular {
@@ -175,6 +177,35 @@ p {
   font-size: 12px;
   font-weight: 700;
   color: black;
+}
+
+.plan-title {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.plan-price {
+  margin-top: 12px;
+  font-size: 15px;
+  opacity: .9;
+}
+
+/* ---- DETALLE DEL PLAN ---- */
+
+#detalle-plan {
+  background: #111;
+  border: 1px solid #222;
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 25px;
+  display: none;
+  animation: aparecer 0.3s ease;
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* ---- PLAN ANUAL ---- */
@@ -277,23 +308,26 @@ p {
 
   <div class="populares-planes">
 
-    <div class="plan-card active">
+    <div class="plan-card" data-plan="PREMIUM">
       <div class="badge-popular">Más popular</div>
       <div class="plan-title">PREMIUM</div>
       <div class="plan-price">COP 49.900/mes<br>(final)*</div>
     </div>
 
-    <div class="plan-card">
+    <div class="plan-card" data-plan="ESTÁNDAR">
       <div class="plan-title">ESTÁNDAR</div>
       <div class="plan-price">COP 36.900/mes<br>(final)*</div>
     </div>
 
-    <div class="plan-card">
+    <div class="plan-card" data-plan="ESTÁNDAR CON ANUNCIOS">
       <div class="plan-title">ESTÁNDAR<br>CON ANUNCIOS</div>
       <div class="plan-price">COP 24.900/mes<br>(final)*</div>
     </div>
 
   </div>
+
+  <!-- Caja donde aparecerán los detalles -->
+  <div id="detalle-plan"></div>
 
   <h3 class="anual-title">Plan anual</h3>
   <p class="anual-sub">Disfruta de 12 meses al precio de 9**</p>
@@ -380,6 +414,57 @@ function cambiarFondo() {
 
 cambiarFondo();
 setInterval(cambiarFondo, 4000);
+
+
+// ------------------- DETALLES DE CADA PLAN -------------------
+const detallesPlanes = {
+  "PREMIUM": `
+    <h3>Detalles del plan PREMIUM</h3>
+    <p>✔ Hasta 4 pantallas simultáneas</p>
+    <p>✔ Máxima calidad 4K UHD + HDR</p>
+    <p>✔ Descargas ilimitadas</p>
+    <p>✔ Contenido sin anuncios</p>
+  `,
+  "ESTÁNDAR": `
+    <h3>Detalles del plan ESTÁNDAR</h3>
+    <p>✔ 2 pantallas simultáneas</p>
+    <p>✔ Calidad Full HD</p>
+    <p>✔ Descargas disponibles</p>
+    <p>✔ Sin anuncios</p>
+  `,
+  "ESTÁNDAR CON ANUNCIOS": `
+    <h3>Detalles del plan ESTÁNDAR CON ANUNCIOS</h3>
+    <p>✔ 2 pantallas simultáneas</p>
+    <p>✔ Calidad HD</p>
+    <p>✔ Incluye anuncios moderados</p>
+    <p>✔ No permite descargas</p>
+  `
+};
+
+// ------------------- SELECCIÓN DE PLAN -------------------
+const cards = document.querySelectorAll(".plan-card");
+const detalleBox = document.getElementById("detalle-plan");
+
+cards.forEach(card => {
+  card.addEventListener("click", () => {
+
+    // Quitar selección previa
+    cards.forEach(c => c.classList.remove("active"));
+
+    // Activar selección
+    card.classList.add("active");
+
+    // Obtener texto del plan
+    const planTitle = card.getAttribute("data-plan");
+
+    // Mostrar detalle
+    detalleBox.innerHTML = detallesPlanes[planTitle] || "<p>Detalles no disponibles.</p>";
+    detalleBox.style.display = "block";
+
+    // Desplazar al detalle
+    detalleBox.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+});
 </script>
 
 </body>
